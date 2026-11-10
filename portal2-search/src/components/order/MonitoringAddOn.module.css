@@ -1,0 +1,7 @@
+.fields {
+  margin-top: 16px;
+}
+
+.date {
+  border-radius: var(--av-radius-sm);
+}

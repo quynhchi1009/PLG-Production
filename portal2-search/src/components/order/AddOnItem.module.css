@@ -1,0 +1,38 @@
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 0;
+}
+.item + .item {
+  border-top: 1px solid var(--av-border-subtle);
+}
+
+.disabled {
+  opacity: 0.55;
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+}
+
+/* body/base/small Semibold */
+.title {
+  font-size: var(--av-small-size);
+  font-weight: 600;
+  line-height: var(--av-small-lh);
+}
+
+.description {
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+}
+
+.note {
+  margin-top: 4px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-tertiary);
+}

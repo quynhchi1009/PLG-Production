@@ -1,0 +1,10 @@
+.group {
+  padding: 16px 0;
+}
+.group + .group {
+  border-top: 1px solid var(--av-border-subtle);
+}
+
+.level {
+  border-radius: var(--av-radius-sm);
+}

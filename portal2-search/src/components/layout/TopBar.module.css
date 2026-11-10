@@ -1,0 +1,108 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: var(--av-sidebar-w);
+  right: 0;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--av-topbar-h);
+  padding: 0 var(--av-page-pad-x);
+  background: var(--av-bg-elevated);
+  box-shadow: 0 1px 0 var(--av-border-subtle);
+}
+
+/* body/base/small Semibold, uppercase wayfinding label: chrome stays quieter than the page heading */
+.title {
+  font: 600 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  text-transform: uppercase;
+}
+
+.actions {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.iconBtn {
+  position: relative;
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--av-content-primary);
+}
+
+.badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border: 1px solid var(--av-bg-elevated);
+  border-radius: var(--av-radius-full);
+  background: var(--av-interactive-primary);
+  color: var(--av-base-contrast);
+  font-size: var(--av-xsmall-size);
+  line-height: 18px;
+  text-align: center;
+}
+
+.popover {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  width: 400px;
+  padding: 24px;
+  background: var(--av-bg-elevated);
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-xl);
+  box-shadow: var(--av-shadow-popover);
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--av-content-tertiary);
+}
+
+.popTitle {
+  font: 700 var(--av-h6-size) / var(--av-h6-lh) var(--av-font-title);
+}
+
+.popSub {
+  margin: 4px 0 16px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+}
+
+.helpOption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 16px;
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-lg);
+  background: var(--av-bg-elevated);
+  text-align: left;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+}
+.helpOption strong {
+  color: var(--av-content-primary);
+}
+.helpOption:hover {
+  border-color: var(--av-interactive-primary);
+}

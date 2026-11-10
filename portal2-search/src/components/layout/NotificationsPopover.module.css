@@ -1,0 +1,77 @@
+.popover {
+  position: absolute;
+  top: calc(100% + 16px);
+  right: 0;
+  width: 420px;
+  max-height: 440px;
+  overflow-y: auto;
+  background: var(--av-bg-elevated);
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-xl);
+  box-shadow: var(--av-shadow-popover);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--av-border-subtle);
+}
+
+.actions {
+  display: flex;
+  gap: 16px;
+}
+.actions button {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: var(--av-small-size);
+  font-weight: 600;
+  line-height: var(--av-small-lh);
+  color: var(--av-interactive-primary);
+}
+
+.list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid var(--av-border-subtle);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+}
+.item:last-child {
+  border-bottom: 0;
+}
+
+.icon {
+  flex: none;
+  margin-top: 2px;
+  color: var(--av-interactive-primary);
+}
+
+.itemTitle {
+  font-weight: 600;
+}
+
+.company {
+  color: var(--av-content-main);
+}
+
+.message {
+  color: var(--av-content-main);
+}
+
+.time {
+  margin-top: 2px;
+  font-size: var(--av-xsmall-size);
+  line-height: var(--av-xsmall-lh);
+  color: var(--av-content-tertiary);
+}

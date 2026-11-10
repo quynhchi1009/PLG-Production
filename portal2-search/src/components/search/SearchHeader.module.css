@@ -1,0 +1,18 @@
+/* title/h5 over body/base/small */
+.title {
+  font: 700 var(--av-h5-size) / var(--av-h5-lh) var(--av-font-title);
+}
+
+.description {
+  margin-top: 4px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+}
+
+.error {
+  margin-top: 8px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-negative);
+}

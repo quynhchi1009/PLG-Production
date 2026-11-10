@@ -1,0 +1,76 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--av-section-gap);
+  max-width: 1672px;
+}
+
+.criteria {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: var(--av-card-pad);
+}
+
+/* title/h5, same as the Search card */
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font: 700 var(--av-h5-size) / var(--av-h5-lh) var(--av-font-title);
+}
+
+/* the table runs edge to edge inside the card; toolbar and cells share the 24px edge */
+.results {
+  padding: 0;
+  overflow: hidden;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 72px;
+  padding: 16px var(--av-card-pad);
+}
+
+.count {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-tertiary);
+}
+.count strong {
+  color: var(--av-content-primary);
+}
+
+.footer {
+  padding: 16px var(--av-card-pad);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 56px var(--av-card-pad) 72px;
+  border-top: 1px solid var(--av-border-subtle);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+  text-align: center;
+}
+.empty button {
+  margin-top: 8px;
+}
+
+/* title/h6 */
+.emptyTitle {
+  font: 700 var(--av-h6-size) / var(--av-h6-lh) var(--av-font-title);
+  color: var(--av-content-primary);
+}

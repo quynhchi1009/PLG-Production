@@ -1,0 +1,36 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.label {
+  font: 700 var(--av-h6-size) / var(--av-h6-lh) var(--av-font-title);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Filter Button look from the reports list: dark pill when open, outlined otherwise */
+.tab {
+  height: var(--av-button-sm-h);
+  padding: 0 16px;
+  border: 1px solid var(--av-bg-demoted);
+  border-radius: var(--av-radius-lg);
+  background: transparent;
+  color: var(--av-content-primary);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  font-weight: 600;
+}
+.tab:hover {
+  background: var(--av-bg-neutral);
+}
+.active,
+.active:hover {
+  background: var(--av-bg-demoted);
+  color: var(--av-base-contrast);
+}

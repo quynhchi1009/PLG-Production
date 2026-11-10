@@ -1,0 +1,54 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* title/h6 */
+.heading {
+  font: 700 var(--av-h6-size) / var(--av-h6-lh) var(--av-font-title);
+}
+
+.table {
+  overflow: hidden;
+  border-radius: var(--av-radius-lg);
+  background: transparent;
+}
+
+.table table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+}
+
+.table th,
+.table td {
+  height: var(--av-row-h);
+  padding: 0 16px;
+  text-align: left;
+}
+
+.table th {
+  background: var(--av-bg-neutral);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.table td {
+  color: var(--av-content-primary);
+  border-bottom: 1px solid var(--av-border-subtle);
+}
+
+.table tbody tr {
+  transition: background-color 0.15s;
+}
+.table tbody tr:hover {
+  background: var(--av-interactive-selected);
+}
+
+/* the Ghost button's own padding would indent "View" against its column header */
+.table td button {
+  margin-left: -8px;
+}

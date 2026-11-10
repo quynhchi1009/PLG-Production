@@ -1,0 +1,99 @@
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 16px;
+}
+
+/* body/base/small, uppercase wayfinding label */
+.heading {
+  padding: 0 8px 8px;
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-tertiary);
+  text-transform: uppercase;
+}
+
+.list,
+.children {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--av-radius-sm);
+  background: transparent;
+  color: var(--av-content-primary);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  text-align: left;
+}
+.row:hover {
+  background: var(--av-bg-neutral);
+}
+
+.current {
+  background: var(--av-interactive-selected);
+  color: var(--av-content-link);
+  font-weight: 600;
+}
+.groupCurrent {
+  color: var(--av-content-link);
+  font-weight: 600;
+}
+
+/* children hang off a rule; the open page gets the selected fill and a brand edge */
+.children {
+  margin-left: 12px;
+  border-left: 1px solid var(--av-border-subtle);
+}
+.child {
+  padding-left: 20px;
+  border-radius: 0;
+  color: var(--av-content-main);
+}
+.currentChild {
+  margin-left: -1px;
+  border-left: 2px solid var(--av-interactive-primary);
+  background: var(--av-interactive-selected);
+  color: var(--av-content-link);
+  font-weight: 600;
+}
+
+.recommend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--av-border-subtle);
+}
+
+.recoRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 40px;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--av-radius-sm);
+  background: transparent;
+  color: var(--av-content-primary);
+  font: 700 var(--av-body-size) / var(--av-body-lh) var(--av-font-title);
+  text-align: left;
+}
+.recoRow:hover {
+  background: var(--av-bg-neutral);
+}
+.recoRow[aria-pressed='true'] {
+  background: var(--av-interactive-selected);
+  color: var(--av-content-link);
+}

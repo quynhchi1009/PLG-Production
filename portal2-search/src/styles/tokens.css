@@ -1,0 +1,113 @@
+/*
+ * AsiaVerify design-system tokens, LG breakpoint (1440px).
+ * Values mirror the team library's fill styles, text styles (Primitives collection, LG mode),
+ * radius variables and component sizes. Do not add values that are not in the system.
+ */
+:root {
+  /* Fill styles */
+  --av-content-primary: #1b1c1e; /* content/primary */
+  --av-content-main: #444444; /* content/main */
+  --av-content-tertiary: #6b6b6b; /* content/tertiary (placeholders) */
+  --av-content-disabled: #5e5e5e; /* content/disabled */
+  --av-content-link: #004d3f; /* content/link */
+  --av-interactive-primary: #00735f; /* interactive/primary */
+  --av-interactive-control: #004d3f; /* interactive/control (hover / pressed) */
+  --av-interactive-secondary: #626262; /* interactive/secondary (input borders) */
+  --av-interactive-selected: #edf5ef; /* interactive/selected */
+  --av-border-neutral: #a5a5a5; /* border/neutral */
+  --av-border-subtle: #e3e3e3; /* border/subtle */
+  --av-border-negative: #f2c4c0; /* border/negative */
+  --av-bg-subtle: #f1f1f1; /* background/subtle (page) */
+  --av-bg-elevated: #fcfcfc; /* background/elevated (cards, fields) */
+  --av-bg-neutral: rgba(165, 165, 165, 0.2); /* background/neutral (table header) */
+  --av-bg-accent: #f8f7f4; /* background/accent (tab track) */
+  --av-bg-demoted: #292929; /* background/demoted (sidebar) */
+  --av-base-contrast: #f8f8f8; /* base/contrast (text on dark / filled) */
+  --av-negative: #d14343; /* sentiment/negative/content */
+  /* Same hue, darkened so red text on #f8f8f8 reaches 4.5:1 (--av-negative measures 4.3:1 there). Use for text, not fills. */
+  --av-negative-text: #c13434;
+
+  /* Values the MCP frames use that the library tokens above do not cover. Named here so the MCP CSS carries no raw hex. */
+  --av-ink-strong: #111827; /* card titles and key/URL values */
+  --av-ink-muted: #6b7280; /* card sub-lines */
+  --av-track: #f0f2f7; /* empty part of a usage bar */
+  --av-negative-bg: #ffefef; /* inactive badge, limit alert, danger-outline hover */
+  --av-negative-ink: #95231e; /* limit alert text */
+  --av-negative-hover: #b93a3a; /* danger button hover */
+  --av-positive-bg: #f6ffed; /* active badge, countdown pill, "New" badge */
+  --av-info-bg: #e6efff; /* "What happens next" toast */
+  --av-info-accent: #0043ce; /* toast accent bar */
+  --av-rule: #dedede; /* table header rule */
+  --av-rule-soft: #ececec; /* table row rule */
+  --av-chart-grid: #e5e7eb;
+  --av-chart-axis: #9ca3af;
+  /* MCP type roles, scaled to sit with the 14px navigation: page title > section title > body/label (nav is 14px). */
+  --av-mcp-h1-size: 22px; /* page title ("MCP") */
+  --av-mcp-h1-lh: 30px;
+  --av-mcp-h2-size: 18px; /* section and card titles ("MCP credentials", "Usage", hero heading) */
+  --av-mcp-h2-lh: 26px;
+  --av-mcp-text-size: 14px; /* running paragraphs, same size as the navigation labels */
+  --av-mcp-text-lh: 22px;
+  --av-mcp-h1-size-narrow: 20px; /* below 640px */
+  --av-mcp-h1-lh-narrow: 28px;
+  --av-mcp-h2-size-narrow: 16px; /* below 960px */
+  --av-mcp-h2-lh-narrow: 24px;
+  /* Line height for running paragraphs at body size: 16/20 (1.25) is tight for multi-line copy. */
+  --av-body-lh-relaxed: 24px;
+  --av-positive: #1b813d; /* sentiment/positive/content */
+  --av-accent-badge: #009a7e; /* interactive/contrast */
+  /* Moderate-risk amber. Approximates the library's color/yellow/500; confirm the exact value against Figma. */
+  --av-warning: #c98a00;
+
+  /* Radius variables (Primitives) */
+  --av-radius-sm: 4px;
+  --av-radius-md: 6px;
+  --av-radius-lg: 8px;
+  --av-radius-xl: 12px;
+  --av-radius-full: 9999px;
+
+  /* Text styles at LG (font/size/* · font/line-height/*) */
+  --av-font-title: 'Roboto', system-ui, sans-serif;
+  --av-font-body: 'Open Sans', system-ui, sans-serif;
+  --av-h4-size: 24px; /* title/h4 */
+  --av-h4-lh: 30px;
+  --av-h5-size: 20px; /* title/h5 */
+  --av-h5-lh: 30px;
+  --av-h6-size: 16px; /* title/h6 */
+  --av-h6-lh: 20px;
+  --av-body-size: 16px; /* body/base/medium */
+  --av-body-lh: 20px;
+  --av-small-size: 14px; /* body/base/small */
+  --av-small-lh: 20px;
+  --av-xsmall-size: 12px; /* body/base/xsmall */
+  --av-xsmall-lh: 20px;
+  --av-footnote-size: 10px; /* body/footnote */
+  --av-footnote-lh: 12px;
+
+  /* Layout at LG: layout/Gutter = 48 */
+  --av-gutter: 48px;
+  --av-sidebar-w: 288px;
+  --av-topbar-h: 64px;
+  --av-page-pad-x: var(--av-gutter);
+  --av-page-pad-y: 32px;
+  --av-card-pad: 24px;
+  --av-section-gap: 32px;
+  --av-summary-w: 320px;
+
+  /* Control sizes at LG (size=lg) */
+  --av-input-h: 36px; /* input 2.0.0 md */
+  --av-button-lg-h: 46px; /* Button 2.0.0 lg */
+  --av-button-sm-h: 36px; /* Button 2.0.0 sm */
+  --av-option-h: 36px; /* selection option md */
+  --av-checkbox: 20px; /* checkbox md */
+  --av-radio: 20px; /* radio lg */
+  --av-row-h: 48px; /* table row */
+
+  /* Elevation (not defined by the library; kept from the portal) */
+  --av-shadow-table: 0 2px 10px rgba(58, 53, 65, 0.1);
+  --av-shadow-plan: 0 9px 20px rgba(0, 0, 0, 0.1);
+  --av-shadow-summary: 0 19px 42px rgba(0, 0, 0, 0.1), 0 76px 76px rgba(0, 0, 0, 0.09);
+  --av-shadow-popover: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --av-shadow-dialog: 0 24px 64px rgba(0, 0, 0, 0.28), 0 4px 16px rgba(0, 0, 0, 0.12);
+  --av-scrim: rgba(0, 0, 0, 0.45);
+}

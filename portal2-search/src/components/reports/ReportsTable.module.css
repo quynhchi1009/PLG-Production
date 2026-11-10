@@ -1,0 +1,136 @@
+.wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 960px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+}
+
+.cCheck { width: 56px; }
+.cDate { width: 112px; }
+.cOrder { width: 140px; }
+.cJur { width: 148px; }
+.cType { width: 152px; }
+.cStatus { width: 120px; }
+.cAction { width: 176px; }
+
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table th {
+  height: var(--av-row-h);
+  padding-top: 0;
+  padding-bottom: 0;
+  background: var(--av-bg-neutral);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.table td {
+  min-height: var(--av-row-h);
+  color: var(--av-content-primary);
+  border-bottom: 1px solid var(--av-border-subtle);
+}
+
+/* checkbox column carries the card's 24px edge; the last column mirrors it */
+.table .check {
+  padding-left: 24px;
+  padding-right: 0;
+}
+.table .actionHead,
+.table .actions {
+  padding-right: 24px;
+  text-align: right;
+}
+.table .actions {
+  white-space: nowrap;
+}
+
+.table tbody tr:hover {
+  background: var(--av-interactive-selected);
+}
+.selectedRow {
+  background: var(--av-interactive-selected);
+}
+
+.strong {
+  display: block;
+}
+.sub {
+  display: block;
+  color: var(--av-content-tertiary);
+}
+.mono {
+  font-variant-numeric: tabular-nums;
+  word-break: break-all;
+}
+
+.sort {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-transform: inherit;
+}
+.sort svg {
+  color: var(--av-content-tertiary);
+}
+.sort:hover svg {
+  color: var(--av-content-primary);
+}
+
+.jur {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.flag {
+  flex: none;
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  background-size: cover;
+}
+
+.actions button + button {
+  margin-left: 8px;
+}
+
+/* ghost buttons carry their own padding; pull the right-most one back to the column edge */
+.actions button:last-child {
+  margin-right: -8px;
+}
+
+.skeletonRow td {
+  height: 56px;
+}
+.bar {
+  display: block;
+  height: 12px;
+  border-radius: var(--av-radius-sm);
+  background: var(--av-bg-neutral);
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  50% {
+    opacity: 0.45;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bar {
+    animation: none;
+  }
+}

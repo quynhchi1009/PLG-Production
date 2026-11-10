@@ -1,0 +1,55 @@
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  min-height: 64px;
+  padding: 12px var(--av-card-pad);
+  border-bottom: 1px solid var(--av-border-subtle);
+}
+
+.indicator {
+  margin-right: 8px;
+  font-size: var(--av-body-size);
+  line-height: var(--av-body-lh);
+  font-variant-numeric: tabular-nums;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.rule {
+  width: 1px;
+  height: 32px;
+  background: var(--av-border-subtle);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-sm);
+  background: var(--av-bg-elevated);
+  color: var(--av-content-primary);
+}
+/* share and download are bare glyphs, not paging buttons */
+.group:last-child .btn {
+  border-color: transparent;
+  background: transparent;
+}
+.btn:hover:not(:disabled) {
+  background: var(--av-interactive-selected);
+  color: var(--av-content-link);
+}
+.btn:disabled {
+  background: var(--av-bg-neutral);
+  color: var(--av-content-disabled);
+  cursor: not-allowed;
+}

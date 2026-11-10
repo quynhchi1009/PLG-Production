@@ -1,0 +1,54 @@
+.wrap {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.grid {
+  stroke: var(--av-chart-grid);
+  stroke-width: 1;
+}
+
+.axis {
+  stroke: var(--av-chart-axis);
+  stroke-width: 1;
+}
+
+.tick {
+  font-family: var(--av-font-body);
+  fill: var(--av-content-main);
+}
+
+/* Matches the legend box in the design: right-aligned, 12px from the top, 16px in from the edge. */
+.legend {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  display: flex;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font: 400 12px / 15px var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}

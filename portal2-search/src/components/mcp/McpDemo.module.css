@@ -1,0 +1,230 @@
+.demo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 22px;
+  background: linear-gradient(164deg, #0d1117 8.5%, #161b26 91.5%);
+}
+
+.visual {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.demoHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.demoLogo {
+  position: relative;
+  display: block;
+  width: 98px;
+  height: 36px;
+  overflow: hidden;
+}
+
+.demoLogo img {
+  position: absolute;
+  top: 0;
+  left: -38.81%;
+  width: 138.84%;
+  height: 100%;
+  max-width: none;
+}
+
+.dot {
+  padding: 0 2px;
+  font: 400 16px / 24px var(--av-font-body);
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.brandName {
+  font: 600 18px / 20px var(--av-font-body);
+  letter-spacing: 2.16px;
+  color: #cdced1;
+}
+
+.counts {
+  display: flex;
+  gap: 16px;
+}
+
+.count {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The design drew the figures (#1c1c1b) almost the same colour as the panel, 1:1 contrast, so "200" and "20" were
+   invisible. They take the brand-name grey so they read as the headline numbers above their labels. */
+.countValue {
+  font: 600 18px / 20px var(--av-font-body);
+  letter-spacing: 2.16px;
+  color: #cdced1;
+}
+
+.countLabel {
+  font: 400 11px / 12px var(--av-font-body);
+  letter-spacing: 0.88px;
+  color: #979797;
+}
+
+.terminal {
+  border: 1px solid #27241b;
+  border-radius: 10px;
+  background: #1c1c1b;
+  overflow: hidden;
+}
+
+.termBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px 11px;
+  border-bottom: 1px solid #27241b;
+}
+
+.light {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.termTitle {
+  font: 400 11px / 12px var(--av-font-body);
+  letter-spacing: 0.88px;
+  color: #cdced1;
+  white-space: nowrap;
+}
+
+.status {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 400 9px / 13.5px 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  color: #cdced1;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  opacity: 0.66;
+}
+
+.termBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 199px;
+  padding: 14px 16px;
+  overflow: hidden;
+}
+
+.line {
+  font: 400 11px / 12px var(--av-font-body);
+  letter-spacing: 0.88px;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.marked {
+  padding-left: 10px;
+  border-left: 2px solid #9af4e3;
+  color: #cdced1;
+}
+
+.prompt {
+  color: #cdced1;
+}
+
+.call {
+  color: #e0ffff;
+}
+
+.query {
+  color: #94a3b8;
+}
+
+.ok {
+  color: #4d9d67;
+}
+
+.result {
+  color: #99c7a8;
+}
+
+.chips {
+  display: flex;
+  gap: 6px;
+}
+
+.chip {
+  padding: 8px 6px;
+  border: 1px solid #b6b6b6;
+  border-radius: 4px;
+  background: #1c1c1b;
+  font: 400 var(--av-xsmall-size) / var(--av-xsmall-lh) var(--av-font-body);
+  color: #b6b6b6;
+  white-space: nowrap;
+}
+
+@media (max-width: 1099px) {
+  .demo {
+    padding: 20px 24px;
+  }
+
+  .demoHeader {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .termBody {
+    height: auto;
+    min-height: 199px;
+  }
+}
+
+@media (max-width: 959px) {
+  .line,
+  .termTitle,
+  .countLabel {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .status {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .line {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 639px) {
+  .demo {
+    padding: 16px;
+  }
+
+  .termBar {
+    flex-wrap: wrap;
+    row-gap: 4px;
+  }
+}

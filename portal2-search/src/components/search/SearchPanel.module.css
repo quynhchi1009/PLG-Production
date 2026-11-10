@@ -1,0 +1,10 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--av-section-gap);
+  max-width: 1672px;
+}
+
+.card {
+  padding: var(--av-card-pad);
+}

@@ -1,0 +1,279 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  border: 1px solid var(--av-border-subtle);
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 4px 6px rgba(0, 0, 0, 0.03);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font: 700 var(--av-mcp-h2-size) / var(--av-mcp-h2-lh) var(--av-font-title);
+  color: var(--av-ink-strong);
+}
+
+.sub {
+  font: 400 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
+  color: var(--av-ink-muted);
+}
+
+.body {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 28px;
+}
+
+.left {
+  flex: none;
+  width: 100%;
+  max-width: 600px;
+  padding-top: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.metrics {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.metric {
+  flex: 1 1 300px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.metric + .metric {
+  padding: 0 41px;
+  border-left: 1px solid var(--av-border-subtle);
+  border-right: 1px solid var(--av-border-subtle);
+  justify-content: center;
+}
+
+.metricHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.metricTitle {
+  font: 700 var(--av-small-size) / var(--av-small-lh) var(--av-font-title);
+  color: var(--av-ink-strong);
+}
+
+.metricSub {
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+.meter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar {
+  width: 120px;
+  height: 5px;
+  border-radius: 100px;
+  background: var(--av-track);
+  overflow: hidden;
+}
+
+.fill {
+  height: 5px;
+  border-radius: 100px;
+  background: var(--av-interactive-primary);
+}
+
+.fillFull {
+  background: var(--av-negative);
+}
+
+.pct {
+  padding-top: 4px;
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-main);
+  white-space: nowrap;
+}
+
+.rule {
+  width: 120px;
+  height: 1px;
+  background: var(--av-track);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 24px;
+}
+
+.chip {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8.5px 16.5px;
+  border: 0.5px dashed var(--av-interactive-primary);
+  background: var(--av-bg-elevated);
+}
+
+.chipWide {
+  width: 153px;
+}
+
+.chipLabel {
+  font: 600 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-main);
+  white-space: nowrap;
+}
+
+.chipValue {
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-primary);
+  white-space: nowrap;
+}
+
+.note {
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-main);
+  white-space: nowrap;
+}
+
+/* The chart never gets narrower than 280px (its ticks stay 12px as it scales); the metrics give way first. */
+.chartWrap {
+  flex: 1 1 280px;
+  min-width: 280px;
+  display: flex;
+  justify-content: center;
+}
+
+.body > .left {
+  flex: 0 1 600px;
+  min-width: 0;
+}
+
+/* Metrics left, chart right from 760px up. Between 760 and 1360px the metrics column narrows to make room. */
+@media (max-width: 1359px) {
+  .metric + .metric {
+    padding: 0 24px;
+  }
+}
+
+/* Below 760px even a 280px chart leaves the metrics too cramped, so the chart drops underneath. */
+@media (max-width: 759px) {
+  /* The right border only divided the metrics from the chart beside them; stacked, it divides nothing. */
+  .metric + .metric {
+    border-right: 0;
+  }
+
+  .body {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .body > .left {
+    flex: none;
+    width: 100%;
+    padding-top: 24px;
+  }
+
+  .chartWrap {
+    flex: none;
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 1180px) {
+  .card {
+    padding: 24px;
+  }
+
+  .metric + .metric {
+    padding: 0 16px;
+  }
+}
+
+@media (max-width: 959px) {
+  .card {
+    padding: 20px 16px;
+  }
+
+  .title {
+    font-size: var(--av-mcp-h2-size-narrow);
+    line-height: var(--av-mcp-h2-lh-narrow);
+  }
+
+  .sub {
+    line-height: var(--av-mcp-text-lh);
+  }
+
+  .body {
+    padding-top: 16px;
+  }
+
+  .chips {
+    padding: 0;
+  }
+
+  /* A wider bar on a visible track: the 120px sliver on #f0f2f7 all but vanished on phones and tablets. */
+  .bar {
+    width: min(100%, 240px);
+    background: var(--av-border-subtle);
+  }
+
+  .meter {
+    align-self: stretch;
+  }
+
+  .note {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 559px) {
+  .metrics {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .metric {
+    flex: none;
+    width: 100%;
+  }
+
+  .metric + .metric {
+    margin-top: 20px;
+    padding: 20px 0 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid var(--av-border-subtle);
+  }
+
+  .chip,
+  .chipWide {
+    flex: 1 1 140px;
+    width: auto;
+  }
+}

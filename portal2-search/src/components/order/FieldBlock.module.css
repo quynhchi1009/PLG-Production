@@ -1,0 +1,25 @@
+.block {
+  margin-top: 24px;
+}
+.block:first-child {
+  margin-top: 0;
+}
+
+/* body/base/small Semibold */
+.label {
+  margin-bottom: 2px;
+  font-size: var(--av-small-size);
+  font-weight: 600;
+  line-height: var(--av-small-lh);
+}
+
+.required {
+  color: var(--av-negative);
+}
+
+.help {
+  margin-bottom: 12px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+}

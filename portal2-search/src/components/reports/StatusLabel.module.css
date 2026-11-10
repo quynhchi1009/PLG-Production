@@ -1,0 +1,27 @@
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.dot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--av-radius-full);
+}
+
+.positive {
+  background: var(--av-positive);
+}
+.negative {
+  background: var(--av-negative);
+}
+.neutral {
+  background: transparent;
+  box-shadow: 0 0 0 1.5px var(--av-interactive-secondary) inset;
+}
+.muted {
+  background: var(--av-border-neutral);
+}

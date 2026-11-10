@@ -1,0 +1,65 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--av-input-h);
+  padding: 0 12px;
+  background: var(--av-bg-elevated);
+  border-radius: var(--av-radius-sm);
+  box-shadow: 0 0 0 1px var(--av-interactive-secondary) inset;
+  transition: box-shadow 0.15s;
+}
+.wrapper:focus-within {
+  box-shadow: 0 0 0 2px var(--av-interactive-primary) inset;
+}
+
+.invalid {
+  box-shadow: 0 0 0 1px var(--av-negative) inset;
+}
+
+.disabled {
+  background: var(--av-bg-neutral);
+  box-shadow: 0 0 0 1px var(--av-border-neutral) inset;
+  cursor: not-allowed;
+}
+
+.prefix {
+  display: inline-flex;
+  color: var(--av-content-primary);
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-primary);
+}
+.input::placeholder {
+  color: var(--av-content-tertiary);
+}
+.input:disabled {
+  color: var(--av-content-disabled);
+  cursor: not-allowed;
+}
+
+.iconBtn {
+  display: inline-flex;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--av-content-tertiary);
+}
+.iconBtn:hover {
+  color: var(--av-content-primary);
+}
+
+.tick {
+  flex: none;
+  color: var(--av-positive);
+}

@@ -1,0 +1,87 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid transparent;
+  border-radius: var(--av-radius-sm);
+  font-family: var(--av-font-body);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+/* Button 2.0.0 sizes at LG */
+.lg {
+  height: var(--av-button-lg-h);
+  padding: 0 24px;
+  font-size: 20px;
+  line-height: 30px;
+}
+.sm {
+  height: var(--av-button-sm-h);
+  padding: 0 16px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+}
+
+.block {
+  width: 100%;
+}
+
+/* Filled / Brand */
+.primary {
+  background: var(--av-interactive-primary);
+  border-color: var(--av-interactive-primary);
+  color: var(--av-base-contrast);
+}
+.primary:hover:not(:disabled) {
+  background: var(--av-interactive-control);
+  border-color: var(--av-interactive-control);
+}
+
+/* Outlined / Neutral */
+.secondary {
+  background: transparent;
+  border-color: var(--av-content-main);
+  color: var(--av-content-main);
+}
+.secondary:hover:not(:disabled) {
+  background: var(--av-bg-neutral);
+}
+
+/* Outlined / Brand */
+.outline {
+  background: transparent;
+  border-color: var(--av-interactive-primary);
+  color: var(--av-interactive-primary);
+}
+.outline:hover:not(:disabled) {
+  background: var(--av-interactive-selected);
+}
+
+/* Ghost / Brand */
+.link {
+  padding: 0 8px;
+  background: transparent;
+  color: var(--av-interactive-primary);
+}
+.link:hover:not(:disabled) {
+  background: var(--av-interactive-selected);
+}
+
+.button:disabled {
+  background: var(--av-bg-neutral);
+  border-color: transparent;
+  color: var(--av-content-disabled);
+  cursor: not-allowed;
+}
+
+.spinner {
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

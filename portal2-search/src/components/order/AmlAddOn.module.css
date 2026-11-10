@@ -1,0 +1,12 @@
+.sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sub svg {
+  color: var(--av-content-tertiary);
+}
+
+.field {
+  margin-top: 12px;
+}

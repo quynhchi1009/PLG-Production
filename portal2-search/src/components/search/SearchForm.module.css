@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.jurisdiction {
+  flex: none;
+  width: 240px;
+}
+
+.query {
+  flex: 1;
+  min-width: 0;
+}
+
+.submit {
+  flex: none;
+  width: 120px;
+}

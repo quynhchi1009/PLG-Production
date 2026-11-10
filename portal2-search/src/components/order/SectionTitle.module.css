@@ -1,0 +1,5 @@
+/* title/h6 */
+.title {
+  padding-bottom: 8px;
+  font: 700 var(--av-h6-size) / var(--av-h6-lh) var(--av-font-title);
+}

@@ -1,0 +1,43 @@
+/* Flags for the supported jurisdictions only (full flag-icons CSS ships every country). */
+.fi {
+  display: inline-block;
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+}
+.fi::before {
+  content: '\00a0';
+}
+.fi-cn {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/cn.svg');
+}
+.fi-jp {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/jp.svg');
+}
+.fi-tw {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/tw.svg');
+}
+.fi-hk {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/hk.svg');
+}
+.fi-sg {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/sg.svg');
+}
+.fi-kr {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/kr.svg');
+}
+.fi-nz {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/nz.svg');
+}
+.fi-in {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/in.svg');
+}
+.fi-vn {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/vn.svg');
+}
+.fi-th {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/th.svg');
+}
+.fi-au {
+  background-image: url('../../node_modules/flag-icons/flags/4x3/au.svg');
+}

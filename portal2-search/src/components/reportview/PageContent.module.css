@@ -1,0 +1,164 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+/* title/h5, uppercase, on the selected green with a brand rule underneath */
+.band {
+  padding: 12px 16px;
+  border-bottom: 2px solid var(--av-content-link);
+  background: var(--av-interactive-selected);
+  color: var(--av-content-link);
+  font: 700 var(--av-h5-size) / var(--av-h5-lh) var(--av-font-title);
+  text-transform: uppercase;
+}
+
+.subhead {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--av-content-main);
+  background: var(--av-bg-accent);
+  font: 700 var(--av-h6-size) / var(--av-h6-lh) var(--av-font-title);
+  text-transform: uppercase;
+}
+
+.text {
+  padding: 0 16px;
+  font-size: var(--av-body-size);
+  line-height: var(--av-body-lh);
+  color: var(--av-content-main);
+}
+
+/* stat tiles: label cell on the accent fill, value below */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 8px;
+  margin: 0 16px;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--av-border-subtle);
+}
+.stat dt {
+  padding: 8px 12px;
+  background: var(--av-bg-accent);
+  font: 700 var(--av-h6-size) / var(--av-h6-lh) var(--av-font-title);
+}
+.stat dd {
+  flex: 1;
+  padding: 8px 12px;
+  font-size: var(--av-body-size);
+  line-height: var(--av-body-lh);
+}
+
+.risk {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 1.4fr);
+  align-items: center;
+  justify-items: center;
+  gap: 24px;
+  padding: 24px 16px 8px;
+}
+
+.kv {
+  margin: 0 16px;
+  border-top: 1px solid var(--av-border-subtle);
+}
+.kvRow {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--av-border-subtle);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+}
+.kvRow dt {
+  color: var(--av-content-tertiary);
+}
+.kvRow dd {
+  color: var(--av-content-primary);
+}
+
+.tableWrap {
+  margin: 0 16px;
+  overflow-x: auto;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+}
+.table th,
+.table td {
+  padding: 12px;
+  text-align: left;
+  vertical-align: middle;
+}
+.table th {
+  height: var(--av-row-h);
+  padding-top: 0;
+  padding-bottom: 0;
+  background: var(--av-bg-neutral);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.table td {
+  border-bottom: 1px solid var(--av-border-subtle);
+}
+.table .actionCell {
+  text-align: right;
+}
+
+.callout {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0 16px;
+  padding: 12px 16px;
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-sm);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+}
+
+/* tone is a dot beside the title, as in the order status labels; the words carry the meaning */
+.callout strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--av-content-primary);
+}
+.callout strong::before {
+  content: '';
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--av-radius-full);
+  background: var(--tone);
+}
+.positive {
+  --tone: var(--av-positive);
+}
+.neutral {
+  --tone: var(--av-interactive-secondary);
+}
+.negative {
+  --tone: var(--av-negative);
+}
+
+.empty {
+  margin: 0 16px;
+  padding: 32px 16px;
+  border: 1px dashed var(--av-border-neutral);
+  border-radius: var(--av-radius-lg);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+  text-align: center;
+}

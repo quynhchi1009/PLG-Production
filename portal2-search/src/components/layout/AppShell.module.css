@@ -1,0 +1,11 @@
+.shell {
+  min-height: 100vh;
+}
+
+.content {
+  min-height: calc(100vh - var(--av-topbar-h));
+  margin-left: var(--av-sidebar-w);
+  margin-top: var(--av-topbar-h);
+  padding: var(--av-page-pad-y) var(--av-page-pad-x);
+  background: var(--av-bg-subtle);
+}

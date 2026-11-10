@@ -1,0 +1,40 @@
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--av-border-negative);
+  border-radius: var(--av-radius-md);
+  background: var(--av-negative-bg);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.02), 0 2px 2px rgba(0, 0, 0, 0.08);
+  color: var(--av-negative-ink);
+}
+
+.alert img {
+  flex: none;
+  margin-top: 4px;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.message {
+  font: 600 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
+}
+
+.help {
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+}
+
+/* The raw error token is data, so it reads as code. */
+.code {
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(149, 35, 30, 0.1);
+  font: 600 0.9em / 1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  overflow-wrap: anywhere;
+}

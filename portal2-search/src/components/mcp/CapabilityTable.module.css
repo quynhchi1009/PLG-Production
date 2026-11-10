@@ -1,0 +1,114 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 0;
+}
+
+.heading {
+  font: 700 var(--av-mcp-h2-size) / var(--av-mcp-h2-lh) var(--av-font-title);
+  color: var(--av-content-primary);
+}
+
+.sub {
+  font: 400 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+.table {
+  width: 100%;
+  margin-top: 0;
+  padding: 20px 16px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  font: 400 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
+  color: var(--av-content-primary);
+}
+
+.table th,
+.table td {
+  padding: 0 0 8px;
+  text-align: left;
+  font-weight: 400;
+  vertical-align: bottom;
+}
+
+.table thead th {
+  font-weight: 600;
+  color: var(--av-content-main);
+  border-bottom: 1px solid var(--av-rule);
+}
+
+.table tbody th {
+  font-weight: 600;
+}
+
+.table tbody th,
+.table tbody td {
+  padding-top: 16px;
+  border-bottom: 1px solid var(--av-rule-soft);
+}
+
+@media (max-width: 959px) {
+  .section {
+    padding: 8px 0 0;
+  }
+
+  .heading {
+    font-size: var(--av-mcp-h2-size-narrow);
+    line-height: var(--av-mcp-h2-lh-narrow);
+  }
+
+  .sub {
+    line-height: var(--av-mcp-text-lh);
+  }
+}
+
+/* Narrow: each capability becomes a small block, with the column name repeated beside every value. */
+@media (max-width: 639px) {
+  .table,
+  .table tbody,
+  .table tr {
+    display: block;
+    padding: 0;
+  }
+
+  .table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+
+  .table tr {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--av-rule-soft);
+  }
+
+  .table tbody th,
+  .table tbody td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+
+  .table tbody th {
+    margin-bottom: 8px;
+  }
+
+  .table tbody td {
+    display: flex;
+    gap: 12px;
+    padding-top: 4px;
+  }
+
+  .table tbody td::before {
+    content: attr(data-label);
+    flex: 0 0 9.5em;
+    font: 600 var(--av-xsmall-size) / var(--av-body-lh) var(--av-font-body);
+    letter-spacing: 0.02em;
+    color: var(--av-content-main);
+  }
+}

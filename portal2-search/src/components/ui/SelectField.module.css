@@ -1,0 +1,129 @@
+.root {
+  position: relative;
+}
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  height: var(--av-input-h);
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--av-radius-sm);
+  background: var(--av-bg-elevated);
+  box-shadow: 0 0 0 1px var(--av-interactive-secondary) inset;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  text-align: left;
+  transition: box-shadow 0.15s;
+}
+
+.field {
+  border-radius: var(--av-radius-sm);
+}
+
+.open {
+  box-shadow: 0 0 0 2px var(--av-interactive-primary) inset;
+}
+
+.invalid {
+  box-shadow: 0 0 0 1px var(--av-negative) inset;
+}
+
+.disabled {
+  background: var(--av-bg-neutral);
+  box-shadow: 0 0 0 1px var(--av-border-neutral) inset;
+  color: var(--av-content-disabled);
+  cursor: not-allowed;
+}
+
+.value {
+  color: var(--av-content-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.placeholder {
+  color: var(--av-content-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.suffix {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--av-content-primary);
+}
+
+.caretUp {
+  transform: rotate(180deg);
+}
+
+.clear {
+  display: inline-flex;
+  color: var(--av-content-tertiary);
+  cursor: pointer;
+}
+.clear:hover {
+  color: var(--av-content-primary);
+}
+
+.invalidIcon {
+  color: var(--av-negative);
+}
+
+.tick {
+  color: var(--av-positive);
+}
+
+.list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  width: max-content;
+  max-height: 352px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: var(--av-bg-elevated);
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-xl);
+  box-shadow: var(--av-shadow-popover);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  height: var(--av-option-h);
+  padding: 0 12px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+  cursor: pointer;
+}
+.option:hover {
+  background: var(--av-interactive-selected);
+}
+
+.selected {
+  background: var(--av-interactive-selected);
+  color: var(--av-interactive-primary);
+  font-weight: 600;
+}
+
+.flag {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  background-size: cover;
+}

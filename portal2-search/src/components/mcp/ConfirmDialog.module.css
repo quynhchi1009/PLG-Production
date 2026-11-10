@@ -1,0 +1,137 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.16);
+}
+
+.dialog {
+  width: 540px;
+  max-width: calc(100vw - 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  border-radius: var(--av-radius-md);
+  background: #fff;
+  box-shadow: 0 22px 24px rgba(0, 0, 0, 0.1);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font: 600 var(--av-body-size) / var(--av-body-lh) var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+.titleBold {
+  font-weight: 700;
+}
+
+.close {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+/* Icon stays 24px as drawn; the tap area grows to 44px without moving the layout. */
+.close::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+}
+
+.body {
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.cancel,
+.confirm {
+  flex: 1;
+  height: 36px;
+  padding: 8px;
+  border: 0;
+  border-radius: var(--av-radius-sm);
+  font: 600 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+}
+
+.cancel {
+  background: none;
+  color: var(--av-content-main);
+}
+
+.cancel:hover {
+  background: var(--av-bg-subtle);
+}
+
+.confirm {
+  color: #fff;
+}
+
+.primary {
+  background: var(--av-interactive-primary);
+}
+
+.primary:hover {
+  background: var(--av-interactive-control);
+}
+
+.danger {
+  background: var(--av-negative);
+}
+
+.danger:hover {
+  background: var(--av-negative-hover);
+}
+
+.close:focus-visible,
+.cancel:focus-visible,
+.confirm:focus-visible {
+  outline: 2px solid var(--av-interactive-control);
+  outline-offset: 2px;
+}
+
+@media (max-width: 559px) {
+  .dialog {
+    padding: 24px 20px;
+  }
+}
+
+@media (pointer: coarse), (max-width: 959px) {
+  .cancel,
+  .confirm {
+    height: auto;
+    min-height: 44px;
+  }
+
+  .close {
+    width: 44px;
+    height: 44px;
+    margin: -10px -10px -10px 0;
+  }
+
+  .close::after {
+    content: none;
+  }
+
+  .body {
+    line-height: 24px;
+  }
+}

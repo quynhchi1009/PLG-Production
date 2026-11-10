@@ -1,0 +1,30 @@
+.card {
+  flex: 1;
+  min-width: 0;
+  padding: var(--av-card-pad);
+}
+
+.top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* section heading (title/h6) with the secondary view toggle beside it */
+.planHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.heading {
+  font: 700 var(--av-h6-size) / var(--av-h6-lh) var(--av-font-title);
+}
+
+/* each later section is separated by a divider and aligns to the card's left edge */
+.section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--av-border-subtle);
+}

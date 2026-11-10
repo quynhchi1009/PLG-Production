@@ -1,0 +1,48 @@
+.switcher {
+  position: fixed;
+  left: calc(var(--av-sidebar-w) + 16px);
+  bottom: 12px;
+  z-index: 30;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  max-width: calc(100vw - var(--av-sidebar-w) - 100px);
+  padding: 6px 8px;
+  border-radius: var(--av-radius-full);
+  background: rgba(41, 41, 41, 0.92);
+  font-size: var(--av-xsmall-size);
+  line-height: 16px;
+}
+
+.label {
+  padding: 0 8px;
+  color: var(--av-accent-badge);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.link {
+  padding: 4px 10px;
+  border-radius: var(--av-radius-full);
+  color: var(--av-base-contrast);
+}
+.link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.active {
+  background: var(--av-interactive-primary);
+}
+
+/* Dev-only strip: keep it on screen when the page is narrower than the sidebar offset assumes. */
+@media (max-width: 959px) {
+  .switcher {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    max-width: none;
+    border-radius: 12px;
+  }
+}

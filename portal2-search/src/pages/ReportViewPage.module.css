@@ -1,0 +1,16 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--av-section-gap);
+  max-width: 1672px;
+}
+
+.missing {
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+}
+.missing a {
+  color: var(--av-content-link);
+  text-decoration: underline;
+}

@@ -1,0 +1,127 @@
+.hero {
+  display: flex;
+  border: 1px solid var(--av-border-subtle);
+  border-radius: 2px;
+  background: var(--av-bg-elevated);
+  overflow: hidden;
+}
+
+.pitch {
+  flex: 0 0 651px;
+  max-width: 57%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 36px;
+}
+
+.heading {
+  font: 700 var(--av-mcp-h2-size) / var(--av-mcp-h2-lh) var(--av-font-title);
+  color: var(--av-content-primary);
+}
+
+.body {
+  font: 400 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--av-button-lg-h);
+  padding: 8px 24px;
+  border: 0;
+  border-radius: var(--av-radius-md);
+  background: var(--av-interactive-primary);
+  font: 600 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: #fff;
+}
+
+.cta:hover {
+  background: var(--av-interactive-control);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--av-interactive-control);
+  outline-offset: 2px;
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+  background: var(--av-info-bg);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.toastBar {
+  align-self: stretch;
+  flex: none;
+  width: 3px;
+  background: var(--av-info-accent);
+}
+
+.toastIcon {
+  flex: none;
+  margin-top: 15px;
+}
+
+.toastText {
+  flex: 1;
+  padding: 12px 12px 12px 0;
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-primary);
+}
+
+.toastText strong {
+  font-weight: 600;
+}
+
+/* Below 1100px the 651px pitch column and the terminal can no longer sit side by side. */
+@media (max-width: 1099px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .pitch {
+    flex: none;
+    width: 100%;
+    max-width: none;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 959px) {
+  .heading {
+    font-size: var(--av-mcp-h2-size-narrow);
+    line-height: var(--av-mcp-h2-lh-narrow);
+  }
+
+  .body,
+  .toastText {
+    line-height: var(--av-mcp-text-lh);
+  }
+
+  .cta {
+    max-width: 100%;
+    white-space: normal;
+    text-align: center;
+  }
+}
+
+@media (max-width: 639px) {
+  .pitch {
+    gap: 20px;
+    padding: 20px 16px;
+  }
+}
+
+@media (pointer: coarse) {
+  .cta {
+    min-height: 44px;
+  }
+}

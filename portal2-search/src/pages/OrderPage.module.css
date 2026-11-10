@@ -1,0 +1,23 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1672px;
+}
+
+.columns {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--av-section-gap);
+  padding-bottom: 32px;
+}
+
+/* company on the left, report-type control on the right, one divider below */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--av-border-subtle);
+}

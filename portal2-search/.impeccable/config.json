@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "roboto",
+        "createdAt": "2026-10-28T06:42:35.909Z",
+        "reason": "Faithful recreation of portal2.asiaverify.com, whose computed font-family is Roboto (measured in browser); not a new design choice, not user-confirmed as a font preference"
+      }
+    ]
+  }
+}

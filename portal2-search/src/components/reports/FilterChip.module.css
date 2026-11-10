@@ -1,0 +1,105 @@
+.root {
+  position: relative;
+}
+
+/* Filter Button (design system): dark pill; green while open or once a filter is applied */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--av-input-h);
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--av-radius-full);
+  background: var(--av-content-main);
+  color: var(--av-base-contrast);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  white-space: nowrap;
+  transition: background-color 0.15s;
+}
+.chip:hover {
+  background: var(--av-bg-demoted);
+}
+
+.open,
+.active,
+.active:hover {
+  background: var(--av-interactive-primary);
+}
+
+.active {
+  font-weight: 600;
+}
+
+.count {
+  font-weight: 600;
+}
+
+.caretUp {
+  transform: rotate(180deg);
+}
+
+.popover {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  width: max-content;
+  background: var(--av-bg-elevated);
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-xl);
+  box-shadow: var(--av-shadow-popover);
+}
+
+.list {
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: var(--av-option-h);
+  padding: 0 12px;
+  border: 0;
+  background: transparent;
+  color: var(--av-content-main);
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  text-align: left;
+}
+.option:hover {
+  background: var(--av-interactive-selected);
+}
+
+.optionLabel {
+  flex: 1;
+  padding-right: 16px;
+}
+
+.selected {
+  background: var(--av-interactive-selected);
+  color: var(--av-interactive-primary);
+  font-weight: 600;
+}
+
+.flag {
+  width: 24px;
+  height: 16px;
+  border-radius: 2px;
+  background-size: cover;
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 4px 8px;
+  border-top: 1px solid var(--av-border-subtle);
+}

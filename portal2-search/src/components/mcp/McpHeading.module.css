@@ -1,0 +1,35 @@
+.title {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Separates the page heading from the card stack (cards sit 16px apart; the heading needs more air than that). */
+  margin-bottom: 24px;
+}
+
+.title h2 {
+  font: 700 var(--av-mcp-h1-size) / var(--av-mcp-h1-lh) var(--av-font-title);
+  color: var(--av-content-primary);
+}
+
+.title p {
+  font: 400 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+@media (max-width: 959px) {
+  .title {
+    gap: 4px;
+    margin-bottom: 20px;
+  }
+
+  .title p {
+    line-height: var(--av-mcp-text-lh);
+  }
+}
+
+@media (max-width: 639px) {
+  .title h2 {
+    font-size: var(--av-mcp-h1-size-narrow);
+    line-height: var(--av-mcp-h1-lh-narrow);
+  }
+}

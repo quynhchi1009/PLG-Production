@@ -1,0 +1,26 @@
+/* tabs 2.0 · type=line · size=md */
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid var(--av-border-subtle);
+}
+
+.tab {
+  padding: 8px 16px;
+  margin-bottom: -1px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-main);
+}
+.tab:hover {
+  color: var(--av-interactive-primary);
+}
+
+.active {
+  border-bottom-color: var(--av-interactive-primary);
+  color: var(--av-interactive-primary);
+  font-weight: 600;
+}

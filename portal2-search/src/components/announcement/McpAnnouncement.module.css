@@ -1,0 +1,201 @@
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  /* minmax(0, …) keeps the 720px dialog from stretching its track past a narrow viewport. */
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  padding: 16px;
+  background: var(--av-scrim);
+  animation: scrimIn 200ms ease-out both;
+}
+
+.dialog {
+  position: relative;
+  width: 720px;
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  border-radius: var(--av-radius-xl);
+  background: #fff;
+  box-shadow: var(--av-shadow-dialog);
+  animation: dialogIn 360ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.dialog:focus {
+  outline: none;
+}
+
+@keyframes scrimIn {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes dialogIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scrim,
+  .dialog {
+    animation: none;
+  }
+}
+
+/* ---------- Hero (the clip, Replay pill bottom-left and × top-right over it) ---------- */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--av-radius-full);
+  background: #fff;
+  color: var(--av-content-primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.24);
+  transition: background-color 0.15s;
+}
+
+.close:hover {
+  background: var(--av-bg-subtle);
+}
+
+.replay {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 2px solid var(--av-interactive-control);
+  border-radius: var(--av-radius-full);
+  background: #fff;
+  color: var(--av-content-primary);
+  font: 600 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  /* Outer ring, as on the original's Replay pill. */
+  box-shadow: 0 0 0 3px rgba(0, 115, 95, 0.3), 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: background-color 0.15s;
+}
+
+.replay:hover {
+  background: var(--av-bg-subtle);
+}
+
+.close:focus-visible,
+.replay:focus-visible,
+.gotIt:focus-visible,
+.explore:focus-visible {
+  outline: 2px solid var(--av-interactive-control);
+  outline-offset: 2px;
+}
+
+/* ---------- Copy + actions ---------- */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 28px 32px 32px;
+}
+
+.title {
+  font: 700 var(--av-mcp-h1-size) / var(--av-mcp-h1-lh) var(--av-font-title);
+  color: var(--av-content-primary);
+  text-wrap: balance;
+}
+
+.body {
+  max-width: 62ch;
+  font: 400 var(--av-body-size) / var(--av-body-lh-relaxed) var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+.note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 4px;
+  padding: 14px 16px;
+  border-radius: var(--av-radius-lg);
+  background: var(--av-bg-accent);
+  font: 400 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
+  color: var(--av-content-main);
+}
+
+.noteIcon {
+  flex: none;
+  margin-top: 1px;
+  color: var(--av-interactive-primary);
+}
+
+.note strong {
+  font-weight: 600;
+  color: var(--av-content-primary);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.gotIt,
+.explore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--av-button-lg-h);
+  padding: 8px 24px;
+  border: 0;
+  border-radius: var(--av-radius-md);
+  font: 600 var(--av-body-size) / var(--av-body-lh) var(--av-font-body);
+}
+
+/* Ghost / Brand, as in the design system's Button "link" variant: transparent, brand text, tinted on hover. */
+.gotIt {
+  background: transparent;
+  color: var(--av-interactive-primary);
+}
+
+.gotIt:hover {
+  background: var(--av-interactive-selected);
+}
+
+.explore {
+  background: var(--av-interactive-primary);
+  color: #fff;
+}
+
+.explore:hover {
+  background: var(--av-interactive-control);
+}
+
+@media (max-width: 559px) {
+  .content {
+    padding: 20px 20px 24px;
+  }
+
+  .actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+}
