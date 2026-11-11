@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import type { McpChartSeries } from '../../types/mcp'
 import styles from './UsageChart.module.css'
 
@@ -78,7 +78,10 @@ export function UsageChart({ days, series }: UsageChartProps) {
 
         {series.map((s) => (
           <g key={s.id}>
+            {/* pathLength=1 lets the announcement clip draw the line with a plain 0→1 dash offset. */}
             <polyline
+              data-mcp-line
+              pathLength={1}
               fill="none"
               stroke={s.color}
               strokeWidth={2}
@@ -86,7 +89,17 @@ export function UsageChart({ days, series }: UsageChartProps) {
               points={s.values.map((v, i) => `${px(i)},${py(v)}`).join(' ')}
             />
             {s.values.map((v, i) => (
-              <circle key={i} cx={px(i)} cy={py(v)} r={3} fill="#fff" stroke={s.color} strokeWidth={1.5} />
+              <circle
+                key={i}
+                data-mcp-dot
+                style={{ '--i': i } as CSSProperties}
+                cx={px(i)}
+                cy={py(v)}
+                r={3}
+                fill="#fff"
+                stroke={s.color}
+                strokeWidth={1.5}
+              />
             ))}
           </g>
         ))}

@@ -16,6 +16,65 @@ interface CredentialsCardProps {
   onRefresh: () => void
 }
 
+/** The "Active" / "Inactive" pill in the card header. Exported so the announcement clip can show it on its own. */
+export function McpStatusBadge({ inactive }: { inactive: boolean }) {
+  return (
+    <span className={[styles.badge, inactive ? styles.badgeInactive : styles.badgeActive].join(' ')} data-mcp-badge>
+      {inactive ? 'Inactive' : 'Active'}
+    </span>
+  )
+}
+
+interface McpKeyFieldProps {
+  inactive: boolean
+  apiKey: string
+  revealed: boolean
+  copied: boolean
+  onToggleReveal: () => void
+  onCopy: () => void
+}
+
+/** The MCP KEY row: label, value, eye toggle and Copy. Exported so the announcement clip can show it on its own. */
+export function McpKeyField({ inactive, apiKey, revealed, copied, onToggleReveal, onCopy }: McpKeyFieldProps) {
+  return (
+    <div className={`${styles.field} ${styles.fieldKey} ${inactive ? styles.fieldKeyInactive : ''}`}>
+      <div className={styles.fieldMain}>
+        <span className={styles.keyLabel}>MCP KEY</span>
+        <span className={styles.value} data-testid="mcp-key" data-mcp-key>
+          {revealed ? apiKey : MCP_KEY_MASK}
+        </span>
+        <button
+          type="button"
+          className={styles.iconBtn}
+          aria-label={revealed ? 'Hide MCP key' : 'Show MCP key'}
+          aria-pressed={revealed}
+          onClick={onToggleReveal}
+        >
+          <img src={eye} alt="" width={16} height={16} />
+        </button>
+      </div>
+      <button type="button" className={styles.textBtn} onClick={onCopy}>
+        <img src={copyIcon} alt="" width={16} height={16} />
+        {copied ? 'Copied' : 'Copy'}
+      </button>
+    </div>
+  )
+}
+
+/** The MCP URL row: label, value and Copy. Exported so the announcement clip can show it on its own. */
+export function McpUrlField({ copied, onCopy }: { copied: boolean; onCopy: () => void }) {
+  return (
+    <div className={`${styles.field} ${styles.fieldUrl}`}>
+      <span className={styles.urlLabel}>MCP URL</span>
+      <span className={`${styles.value} ${styles.urlValue}`}>{MCP_URL}</span>
+      <button type="button" className={styles.textBtn} onClick={onCopy}>
+        <img src={copyIcon} alt="" width={16} height={16} />
+        {copied ? 'Copied' : 'Copy'}
+      </button>
+    </div>
+  )
+}
+
 export function CredentialsCard({
   status,
   apiKey,
@@ -33,9 +92,7 @@ export function CredentialsCard({
         <h2 id="mcp-cred-title" className={styles.title} tabIndex={-1}>
           MCP credentials
         </h2>
-        <span className={[styles.badge, inactive ? styles.badgeInactive : styles.badgeActive].join(' ')}>
-          {inactive ? 'Inactive' : 'Active'}
-        </span>
+        <McpStatusBadge inactive={inactive} />
       </div>
       <p className={styles.desc}>
         Your MCP key links to your account credentials in the backend. Paste into your MCP client config. Refreshing
@@ -43,36 +100,15 @@ export function CredentialsCard({
       </p>
 
       <div className={styles.fields}>
-        <div className={`${styles.field} ${styles.fieldKey} ${inactive ? styles.fieldKeyInactive : ''}`}>
-          <div className={styles.fieldMain}>
-            <span className={styles.keyLabel}>MCP KEY</span>
-            <span className={styles.value} data-testid="mcp-key">
-              {revealed ? apiKey : MCP_KEY_MASK}
-            </span>
-            <button
-              type="button"
-              className={styles.iconBtn}
-              aria-label={revealed ? 'Hide MCP key' : 'Show MCP key'}
-              aria-pressed={revealed}
-              onClick={onToggleReveal}
-            >
-              <img src={eye} alt="" width={16} height={16} />
-            </button>
-          </div>
-          <button type="button" className={styles.textBtn} onClick={onCopyKey}>
-            <img src={copyIcon} alt="" width={16} height={16} />
-            {copied === 'key' ? 'Copied' : 'Copy'}
-          </button>
-        </div>
-
-        <div className={`${styles.field} ${styles.fieldUrl}`}>
-          <span className={styles.urlLabel}>MCP URL</span>
-          <span className={`${styles.value} ${styles.urlValue}`}>{MCP_URL}</span>
-          <button type="button" className={styles.textBtn} onClick={onCopyUrl}>
-            <img src={copyIcon} alt="" width={16} height={16} />
-            {copied === 'url' ? 'Copied' : 'Copy'}
-          </button>
-        </div>
+        <McpKeyField
+          inactive={inactive}
+          apiKey={apiKey}
+          revealed={revealed}
+          copied={copied === 'key'}
+          onToggleReveal={onToggleReveal}
+          onCopy={onCopyKey}
+        />
+        <McpUrlField copied={copied === 'url'} onCopy={onCopyUrl} />
       </div>
 
       {/* Announces the copy confirmation to screen readers; the visible label swap alone is silent. */}

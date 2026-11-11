@@ -8,6 +8,15 @@
         "value": "roboto",
         "createdAt": "2026-10-28T06:42:35.909Z",
         "reason": "Faithful recreation of portal2.asiaverify.com, whose computed font-family is Roboto (measured in browser); not a new design choice, not user-confirmed as a font preference"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "src/components/announcement/McpIntroVideo.module.css"
+        ],
+        "createdAt": "2026-11-11T04:05:43.517Z",
+        "reason": "assistant: the 4px left rule marks prompt lines inside the terminal mock, copying .marked in McpDemo.module.css (the MCP page's own demo, from Figma); it is a terminal prompt marker, not a card accent"
       }
     ]
   }

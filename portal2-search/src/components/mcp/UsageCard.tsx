@@ -11,7 +11,7 @@ interface UsageCardProps {
 
 export function UsageCard({ usage, exhausted }: UsageCardProps) {
   return (
-    <section className={styles.card} aria-labelledby="mcp-usage-title">
+    <section className={styles.card} aria-labelledby="mcp-usage-title" data-mcp-usage>
       <div className={styles.head}>
         <h2 id="mcp-usage-title" className={styles.title}>
           Usage
@@ -40,7 +40,8 @@ export function UsageCard({ usage, exhausted }: UsageCardProps) {
                     aria-valuenow={m.consumedPct}
                   >
                     <div
-                      className={`${styles.fill} ${exhausted ? styles.fillFull : ''}`}
+                      data-mcp-fill
+                    className={`${styles.fill} ${exhausted ? styles.fillFull : ''}`}
                       style={{ width: `${m.consumedPct}%` }}
                     />
                   </div>
@@ -66,7 +67,7 @@ export function UsageCard({ usage, exhausted }: UsageCardProps) {
           {!exhausted && <p className={styles.note}>Speak to your Client Success Rep for more access</p>}
         </div>
 
-        <div className={styles.chartWrap}>
+        <div className={styles.chartWrap} data-mcp-chart>
           <UsageChart days={usage.days} series={usage.series} />
         </div>
       </div>

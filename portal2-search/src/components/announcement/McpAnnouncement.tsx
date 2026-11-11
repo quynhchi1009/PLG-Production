@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom'
 import { ArrowRight, Plug, RotateCcw, X } from 'lucide-react'
 import { MCP_BETA } from '../../data/mcp'
 import { trapTab } from '../../hooks/useFocusTrap'
-import { McpPreviewVideo } from './McpPreviewVideo'
+import { McpIntroVideo } from './McpIntroVideo'
 import styles from './McpAnnouncement.module.css'
 
 interface McpAnnouncementProps {
@@ -55,7 +55,8 @@ export function McpAnnouncement({ onDismiss, onExplore }: McpAnnouncementProps) 
         tabIndex={-1}
       >
         <div className={styles.hero}>
-          <McpPreviewVideo replayKey={replayKey} />
+          {/* The earlier zoom-tour clip (McpPreviewVideo) is kept; it can be previewed at #/announcement-video?clip=zoom. */}
+          <McpIntroVideo replayKey={replayKey} />
           <button type="button" className={styles.replay} onClick={() => setReplayKey((n) => n + 1)}>
             <RotateCcw size={16} aria-hidden />
             Replay

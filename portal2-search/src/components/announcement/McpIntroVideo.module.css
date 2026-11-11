@@ -1,0 +1,917 @@
+/*
+ * Timeline (ms), 14000 in all. A fixed 1440×810 frame (16:9, so it exports as exactly 3840×2160): no camera, every scene
+ * fades in over the one before it.
+ *
+ *      0–2250  A · what MCP is: headline and the clients it works with
+ *   2000–5450  B · how it works: agent card 2150, wire 2500, MCP pill 2650, registry 2750, terminal 2900,
+ *                  prompt typed 3100–3600, call 3700 (packet to AsiaVerify 3700–4250), result 4250 (packet back 4250–4750),
+ *                  the two hits 4400 and 4500
+ *   5200–9150  C · Activate MCP: button 5500, cursor 5800, click 6300, the real key and URL fields in 6750,
+ *                  key typed 7300–7900, "Active" badge 7800
+ *   8900–11800 D · the usage panel in 9200 (meters and the real graph), meters fill and lines draw 9650–10400
+ *  11550–14000 E · "Free during the beta" 11650, the three figures 11800–12060, the button 12400,
+ *                  its pulse 13200, the sidebar hint 12700
+ *
+ * Reduced motion: every animation sits inside one `no-preference` query, so without it the clip is the still of scene B,
+ * the most informative of the three non-UI scenes.
+ */
+
+.stage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #0d1117;
+}
+
+.frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1440px;
+  height: 810px;
+  overflow: hidden;
+  transform-origin: 0 0;
+  transform: scale(var(--k));
+  background:
+    radial-gradient(900px 520px at 78% 18%, rgba(0, 154, 126, 0.16), transparent 70%),
+    linear-gradient(164deg, #0d1117 8.5%, #161b26 91.5%);
+  color: #fff;
+}
+
+/* ---------- Brand (kept clear of the dialog's close button, top right, and Replay pill, bottom left) ---------- */
+.brand {
+  position: absolute;
+  z-index: 2;
+  top: 40px;
+  left: 56px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.logo {
+  position: relative;
+  display: block;
+  width: 216px;
+  height: 79px;
+  overflow: hidden;
+}
+
+.logo img {
+  position: absolute;
+  top: 0;
+  left: -38.81%;
+  width: 138.84%;
+  height: 100%;
+  max-width: none;
+}
+
+.sep {
+  font: 400 36px / 1 var(--av-font-body);
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.brandName {
+  font: 600 40px / 1 var(--av-font-body);
+  letter-spacing: 4.7px;
+  color: #cdced1;
+}
+
+/* ---------- Scenes ---------- */
+.scene {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sceneA,
+.sceneC,
+.sceneD,
+.sceneE {
+  opacity: 0;
+}
+
+/* · A */
+.sceneA {
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 120px 120px 110px;
+  text-align: center;
+}
+
+.eyebrow {
+  font: 600 24px / 1 var(--av-font-body);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #9af4e3;
+}
+
+.headline {
+  max-width: 900px;
+  font: 700 64px / 1.14 var(--av-font-title);
+  letter-spacing: -0.5px;
+  text-wrap: balance;
+}
+
+.lede {
+  max-width: 760px;
+  font: 400 30px / 1.4 var(--av-font-body);
+  color: #b6bcc6;
+  text-wrap: balance;
+}
+
+/* · B */
+.sceneB {
+  gap: 52px;
+  padding: 164px 130px 0;
+}
+
+.flow {
+  display: flex;
+  align-items: center;
+  height: 160px;
+}
+
+.card {
+  flex: none;
+  width: 380px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0 26px;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.cardIcon {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(154, 244, 227, 0.14);
+  color: #9af4e3;
+}
+
+.cardTitle {
+  display: block;
+  font: 600 36px / 1.2 var(--av-font-title);
+}
+
+.cardSub {
+  display: block;
+  margin-top: 4px;
+  font: 400 24px / 1.25 var(--av-font-body);
+  color: #9aa4b2;
+}
+
+.link {
+  position: relative;
+  flex: 1;
+  height: 160px;
+}
+
+.wire {
+  position: absolute;
+  top: calc(50% - 2px);
+  left: 0;
+  right: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, rgba(154, 244, 227, 0.15), #009a7e 50%, rgba(154, 244, 227, 0.15));
+  transform-origin: 0 50%;
+}
+
+.packet {
+  position: absolute;
+  top: calc(50% - 11px);
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #9af4e3;
+  box-shadow: 0 0 18px 4px rgba(154, 244, 227, 0.6);
+  opacity: 0;
+}
+
+.packetBack {
+  background: #fff;
+  box-shadow: 0 0 18px 4px rgba(255, 255, 255, 0.5);
+}
+
+.pill {
+  position: absolute;
+  top: calc(50% - 38px);
+  left: calc(50% - 98px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 196px;
+  height: 76px;
+  border-radius: 38px;
+  background: var(--av-interactive-primary);
+  box-shadow: 0 0 0 6px rgba(0, 154, 126, 0.25);
+  font: 600 34px / 1 var(--av-font-body);
+  letter-spacing: 3px;
+}
+
+.url {
+  position: absolute;
+  top: calc(50% + 54px);
+  left: 0;
+  right: 0;
+  text-align: center;
+  font: 400 24px / 1 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  color: #9aa4b2;
+}
+
+.terminal {
+  border: 2px solid #27241b;
+  border-radius: 20px;
+  background: #1c1c1b;
+  overflow: hidden;
+}
+
+.termBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  border-bottom: 2px solid #27241b;
+}
+
+.light {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.termTitle {
+  margin-left: 6px;
+  font: 400 22px / 1 var(--av-font-body);
+  letter-spacing: 1.4px;
+  color: #cdced1;
+}
+
+.termBody {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 246px;
+  padding: 18px 26px;
+  overflow: hidden;
+}
+
+.line {
+  width: fit-content;
+  max-width: 100%;
+  font: 400 28px / 36px 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  white-space: nowrap;
+}
+
+.marked {
+  padding-left: 18px;
+  border-left: 4px solid #9af4e3;
+}
+
+.prompt {
+  color: #e6e8eb;
+}
+
+.call {
+  color: #e0ffff;
+}
+
+.query {
+  color: #94a3b8;
+}
+
+.ok {
+  color: #4ade80;
+}
+
+.result {
+  color: #99c7a8;
+}
+
+[data-glyph='spin'] {
+  display: inline-block;
+}
+
+/* · C and D share a heading and a block of the real UI, enlarged as a whole. */
+.sceneC,
+.sceneD {
+  align-items: center;
+}
+
+.heading {
+  position: absolute;
+  top: 138px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font: 700 40px / 1.1 var(--av-font-title);
+  letter-spacing: -0.2px;
+}
+
+/* The heading sits 38px above the block under it, the same gap "Free during the beta" has above its figures
+   (heading box 44px tall: C's block starts at 300, D's panel at 205). */
+.headingC {
+  top: 218px;
+}
+
+.headingD {
+  top: 123px;
+}
+
+/* C: the page's own key and URL fields, enlarged as a block (natural width 660 × 1.7). They keep their own light input
+   styling; nothing else of the credentials card is shown. */
+.ui {
+  position: absolute;
+  top: 300px;
+  left: 159px;
+  width: 1122px;
+}
+
+.uiInner {
+  width: 660px;
+  transform: scale(1.7);
+  transform-origin: 0 0;
+}
+
+.badgeRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* D: one translucent panel, like the cards in scene B, holding the meters and the page's own graph. */
+.panel {
+  position: absolute;
+  top: 205px;
+  left: 130px;
+  width: 1180px;
+  height: 478px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 0 40px;
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.meters {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.meterTitle {
+  font: 600 32px / 1.2 var(--av-font-title);
+}
+
+.meterSub {
+  font: 400 26px / 1.2 var(--av-font-body);
+  color: #b6bcc6;
+}
+
+.track {
+  height: 14px;
+  margin: 6px 0 2px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  min-width: 6px;
+  border-radius: 7px;
+  background: #9af4e3;
+}
+
+.meterPct {
+  font: 400 26px / 1.2 var(--av-font-body);
+  color: #9aa4b2;
+}
+
+/* The graph is the page's UsageChart (400 × 300 natural, × 1.4), recoloured for a dark frame through the tokens it
+   reads. */
+.chart {
+  flex: none;
+  width: 560px;
+  height: 420px;
+  --av-chart-grid: rgba(255, 255, 255, 0.12);
+  --av-chart-axis: rgba(255, 255, 255, 0.4);
+  --av-content-main: #cdd2da;
+}
+
+.chartInner {
+  width: 400px;
+  transform: scale(1.4);
+  transform-origin: 0 0;
+}
+
+.press {
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  padding: 26px 52px;
+  border-radius: 14px;
+  background: var(--av-interactive-primary);
+  font: 600 38px / 1 var(--av-font-body);
+  /* Inside the absolutely placed .press it would otherwise shrink to half the frame and wrap. */
+  white-space: nowrap;
+}
+
+.ripple {
+  position: absolute;
+  inset: 0;
+  border: 3px solid #9af4e3;
+  border-radius: 14px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cursor {
+  position: absolute;
+  left: 72%;
+  top: 52%;
+  display: block;
+  filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cursor svg {
+  display: block;
+}
+
+[data-mcp-dot] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* · E */
+.sceneE {
+  align-items: center;
+  justify-content: center;
+  gap: 38px;
+  padding: 120px 120px 110px;
+  text-align: center;
+}
+
+.freeTitle {
+  font: 700 52px / 1.1 var(--av-font-title);
+  letter-spacing: -0.3px;
+}
+
+.stats {
+  display: flex;
+  align-items: stretch;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 300px;
+  padding: 0 40px;
+}
+
+.stat + .stat {
+  border-left: 2px solid rgba(255, 255, 255, 0.14);
+}
+
+.statValue {
+  font: 700 128px / 1 var(--av-font-title);
+  color: #9af4e3;
+}
+
+.statLabel {
+  font: 400 34px / 1.2 var(--av-font-body);
+  letter-spacing: 1px;
+  color: #b6bcc6;
+}
+
+.ctaPulse {
+  margin-top: 8px;
+}
+
+/* Pulse that spreads out of the button, drawing the eye to it. */
+.ctaPulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 3px solid #9af4e3;
+  border-radius: 14px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.caption {
+  font: 400 32px / 1.3 var(--av-font-body);
+  color: #b6bcc6;
+}
+
+.caption strong {
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ---------- Motion ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .sceneA {
+    opacity: 1;
+    animation: sceneOut 350ms 1900ms ease-in forwards;
+  }
+
+  .sceneB {
+    opacity: 0;
+    animation:
+      sceneIn 300ms 2000ms ease-out forwards,
+      sceneOut 300ms 5150ms ease-in forwards;
+  }
+
+  .sceneC {
+    animation:
+      sceneIn 300ms 5200ms ease-out forwards,
+      sceneOut 300ms 8850ms ease-in forwards;
+  }
+
+  .sceneD {
+    animation:
+      sceneIn 300ms 8900ms ease-out forwards,
+      sceneOut 300ms 11500ms ease-in forwards;
+  }
+
+  .sceneE {
+    animation: sceneIn 350ms 11550ms ease-out forwards;
+  }
+
+  /* A */
+  .sceneA [data-a='eyebrow'] {
+    animation: rise 450ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneA [data-a='headline'] {
+    animation: rise 600ms 350ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneA [data-a='lede'] {
+    animation: rise 550ms 750ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* B */
+  .sceneB [data-b='agent'] {
+    animation: rise 450ms 2150ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneB [data-b='wire'] {
+    animation: draw 500ms 2500ms cubic-bezier(0.65, 0, 0.35, 1) both;
+  }
+
+  .sceneB [data-b='pill'] {
+    animation: pop 450ms 2650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneB [data-b='url'] {
+    animation: fade 300ms 2800ms ease-out both;
+  }
+
+  .sceneB [data-b='registry'] {
+    animation: rise 450ms 2750ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneB [data-b='terminal'] {
+    animation: rise 450ms 2900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneB [data-t='0'] {
+    animation: type 500ms 3100ms steps(37, end) both;
+  }
+
+  .sceneB [data-t='1'] {
+    animation: rise 200ms 3700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneB [data-glyph='spin'] {
+    animation: spin 550ms 3700ms linear both;
+  }
+
+  .sceneB [data-t='2'] {
+    animation: rise 200ms 4250ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneB [data-t='3'] {
+    animation: rise 200ms 4400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneB [data-t='4'] {
+    animation: rise 200ms 4500ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* `forwards` only: `both` would paint the first keyframe during the delay. */
+  .sceneB [data-b='packetOut'] {
+    animation: toRegistry 550ms 3700ms ease-in-out forwards;
+  }
+
+  .sceneB [data-b='packetBack'] {
+    animation: toAgent 500ms 4250ms ease-in-out forwards;
+  }
+
+  /* C */
+  .sceneC [data-cc='title'] {
+    animation: rise 450ms 5350ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneC [data-cc='press'] {
+    animation:
+      pop 450ms 5500ms cubic-bezier(0.16, 1, 0.3, 1) both,
+      fadeOut 300ms 6650ms ease-in forwards;
+  }
+
+  .sceneC [data-cc='cta'] {
+    animation: press 420ms 6300ms ease-in-out both;
+  }
+
+  .sceneC [data-cc='ripple'] {
+    animation: ripple 900ms 6300ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .sceneC [data-cc='cursor'] {
+    animation: cursorPath 1100ms 5800ms linear both;
+  }
+
+  .sceneC [data-cc='card'] {
+    animation: rise 450ms 6750ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneC [data-mcp-key] {
+    animation: type 600ms 7300ms steps(39, end) both;
+  }
+
+  .sceneC [data-mcp-badge] {
+    animation: pillIn 300ms 7800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* D */
+  .sceneD [data-d='title'] {
+    animation: rise 450ms 9050ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneD [data-d='card'] {
+    animation: rise 450ms 9200ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneD [data-mcp-fill] {
+    animation: fillIn 600ms 9650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneD [data-mcp-line] {
+    stroke-dasharray: 1;
+    animation: drawLine 750ms 9650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneD [data-mcp-dot] {
+    animation: dotIn 260ms calc(9800ms + var(--i) * 55ms) cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* E */
+  .sceneE [data-e='title'] {
+    animation: rise 450ms 11650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneE [data-e='stat0'] {
+    animation: rise 450ms 11800ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneE [data-e='stat1'] {
+    animation: rise 450ms 11930ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneE [data-e='stat2'] {
+    animation: rise 450ms 12060ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneE [data-e='cta'] {
+    animation: pop 500ms 12400ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .sceneE [data-e='cta']::after {
+    animation: pulse 700ms 13200ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .sceneE [data-e='caption'] {
+    animation: fade 400ms 12700ms ease-out both;
+  }
+}
+
+/* ---------- Keyframes ---------- */
+@keyframes sceneIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sceneOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    scale: 0.82;
+  }
+}
+
+@keyframes pillIn {
+  from {
+    opacity: 0;
+    scale: 0.88;
+  }
+}
+
+@keyframes draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes fillIn {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes drawLine {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dotIn {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 720deg;
+  }
+}
+
+@keyframes press {
+  40% {
+    transform: scale(0.955);
+    background: var(--av-interactive-control);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.12, 1.7);
+  }
+}
+
+/* Cursor: glides in from the lower right (5800–6240), rests on the button through the click (6300), fades out (6700–6900). */
+@keyframes cursorPath {
+  0% {
+    opacity: 0;
+    translate: 190px 120px;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  40% {
+    opacity: 1;
+    translate: 0 0;
+    animation-timing-function: linear;
+  }
+  81% {
+    opacity: 1;
+    translate: 0 0;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 0;
+  }
+}
+
+@keyframes toRegistry {
+  0% {
+    opacity: 0;
+    translate: 0 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 398px 0;
+  }
+}
+
+@keyframes toAgent {
+  0% {
+    opacity: 0;
+    translate: 398px 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    translate: 0 0;
+  }
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.14, 1.5);
+  }
+}

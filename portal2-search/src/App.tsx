@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { StateSwitcher } from './components/layout/StateSwitcher'
+import { AnnouncementVideoPage } from './pages/AnnouncementVideoPage'
 import { MCP_STATES, McpPage } from './pages/McpPage'
 import { ORDER_STATES, OrderPage } from './pages/OrderPage'
 import { REPORTS_STATES, ReportsPage } from './pages/ReportsPage'
@@ -32,8 +33,11 @@ export default function App() {
   const isReports = route.path === '/report'
   const isReportView = route.path === '/report/view'
   const isMcp = route.path === '/mcp'
+  const isVideo = import.meta.env.DEV && route.path === '/announcement-video'
   // Re-key on the full hash so switching states remounts the page with its new seed.
   const pageKey = window.location.hash
+
+  if (isVideo) return <AnnouncementVideoPage />
 
   return (
     <>
