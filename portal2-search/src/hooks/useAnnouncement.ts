@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 
 /** Bump the suffix to show the announcement again to people who dismissed an earlier one. */
-const STORAGE_KEY = 'av-announcement-mcp-launch'
+const STORAGE_KEY = 'av-announcement-mcp-launch-v2'
 
 function wasSeen(): boolean {
   try {
