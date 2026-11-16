@@ -3,14 +3,17 @@ import { createPortal } from 'react-dom'
 import { ArrowRight, Plug, RotateCcw, X } from 'lucide-react'
 import { MCP_BETA } from '../../data/mcp'
 import { trapTab } from '../../hooks/useFocusTrap'
+import { Checkbox } from '../ui/Checkbox'
 import { McpIntroVideo } from './McpIntroVideo'
 import styles from './McpAnnouncement.module.css'
 
+const DONT_SHOW_LABEL = "Don't show this again"
+
 interface McpAnnouncementProps {
-  /** Close without acting (Got it, the × button, Esc, a click on the backdrop). */
-  onDismiss: () => void
-  /** Primary action: the parent closes the dialog and opens the MCP page. */
-  onExplore: () => void
+  /** Close without acting (Got it, the × button, Esc, a click on the backdrop); receives the "Don't show this again" box. */
+  onDismiss: (dontShowAgain: boolean) => void
+  /** Primary action: the parent closes the dialog and opens the MCP page; receives the "Don't show this again" box. */
+  onExplore: (dontShowAgain: boolean) => void
 }
 
 /**
@@ -21,10 +24,14 @@ interface McpAnnouncementProps {
 export function McpAnnouncement({ onDismiss, onExplore }: McpAnnouncementProps) {
   const titleId = useId()
   const bodyId = useId()
+  const dontShowId = useId()
   const dialogRef = useRef<HTMLDivElement>(null)
-  const onDismissRef = useRef(onDismiss)
-  onDismissRef.current = onDismiss
   const [replayKey, setReplayKey] = useState(0)
+  const [dontShowAgain, setDontShowAgain] = useState(false)
+  const dismiss = () => onDismiss(dontShowAgain)
+  // The Esc listener is attached once, so it reads the latest dismiss (and box state) through a ref.
+  const dismissRef = useRef(dismiss)
+  dismissRef.current = dismiss
 
   useEffect(() => {
     const previous = document.activeElement as HTMLElement | null
@@ -32,7 +39,7 @@ export function McpAnnouncement({ onDismiss, onExplore }: McpAnnouncementProps) 
     appRoot?.setAttribute('inert', '')
     dialogRef.current?.focus()
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onDismissRef.current()
+      if (e.key === 'Escape') dismissRef.current()
       else trapTab(e, dialogRef.current)
     }
     document.addEventListener('keydown', onKey)
@@ -44,7 +51,7 @@ export function McpAnnouncement({ onDismiss, onExplore }: McpAnnouncementProps) 
   }, [])
 
   return createPortal(
-    <div className={styles.scrim} onMouseDown={(e) => e.target === e.currentTarget && onDismiss()}>
+    <div className={styles.scrim} onMouseDown={(e) => e.target === e.currentTarget && dismiss()}>
       <div
         ref={dialogRef}
         className={styles.dialog}
@@ -61,7 +68,7 @@ export function McpAnnouncement({ onDismiss, onExplore }: McpAnnouncementProps) 
             <RotateCcw size={16} aria-hidden />
             Replay
           </button>
-          <button type="button" className={styles.close} aria-label="Close" onClick={onDismiss}>
+          <button type="button" className={styles.close} aria-label="Close" onClick={dismiss}>
             <X size={20} aria-hidden />
           </button>
         </div>
@@ -84,10 +91,16 @@ export function McpAnnouncement({ onDismiss, onExplore }: McpAnnouncementProps) 
           </div>
 
           <div className={styles.actions}>
-            <button type="button" className={styles.gotIt} onClick={onDismiss}>
+            <div className={styles.dontShow}>
+              <Checkbox id={dontShowId} checked={dontShowAgain} onChange={setDontShowAgain} aria-label={DONT_SHOW_LABEL} />
+              <label htmlFor={dontShowId} className={styles.dontShowLabel}>
+                {DONT_SHOW_LABEL}
+              </label>
+            </div>
+            <button type="button" className={styles.gotIt} onClick={dismiss}>
               Got it
             </button>
-            <button type="button" className={styles.explore} onClick={onExplore}>
+            <button type="button" className={styles.explore} onClick={() => onExplore(dontShowAgain)}>
               Explore MCP
               <ArrowRight size={20} aria-hidden />
             </button>

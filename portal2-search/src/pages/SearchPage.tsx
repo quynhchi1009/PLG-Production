@@ -31,7 +31,7 @@ interface SearchPageProps {
 export function SearchPage({ stateKey }: SearchPageProps) {
   const preset = stateKey ? SEARCH_STATES[stateKey] : undefined
   const search = useCompanySearch(preset?.seed)
-  // Opens by itself on a plain visit to #/search until dismissed once; the "MCP announcement" state always opens it.
+  // Opens by itself on a plain visit to #/search until "Don't show this again" is ticked; the "MCP announcement" state always opens it.
   const announcement = useAnnouncement({ auto: !stateKey, forced: !!preset?.announce })
 
   const openOrder = (company: Company) => {
@@ -64,8 +64,8 @@ export function SearchPage({ stateKey }: SearchPageProps) {
       {announcement.open && (
         <McpAnnouncement
           onDismiss={announcement.dismiss}
-          onExplore={() => {
-            announcement.dismiss()
+          onExplore={(dontShowAgain) => {
+            announcement.dismiss(dontShowAgain)
             window.location.hash = '#/mcp'
           }}
         />

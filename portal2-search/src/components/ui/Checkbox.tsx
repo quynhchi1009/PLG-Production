@@ -2,6 +2,8 @@ import { Check, Minus } from 'lucide-react'
 import styles from './Checkbox.module.css'
 
 interface CheckboxProps {
+  /** Lets a separate `<label htmlFor>` toggle the box (the box's own label wraps only the input). */
+  id?: string
   checked: boolean
   onChange: (checked: boolean) => void
   disabled?: boolean
@@ -10,10 +12,11 @@ interface CheckboxProps {
   'aria-label': string
 }
 
-export function Checkbox({ checked, onChange, disabled, indeterminate, 'aria-label': ariaLabel }: CheckboxProps) {
+export function Checkbox({ id, checked, onChange, disabled, indeterminate, 'aria-label': ariaLabel }: CheckboxProps) {
   return (
     <label className={[styles.box, disabled && styles.disabled].filter(Boolean).join(' ')}>
       <input
+        id={id}
         type="checkbox"
         className={styles.native}
         checked={checked}

@@ -157,6 +157,21 @@
   margin-top: 8px;
 }
 
+/* "Don't show this again": pinned to the left of the action row, the two buttons stay right-aligned. */
+.dontShow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: auto;
+}
+
+.dontShowLabel {
+  font: 400 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
+  color: var(--av-content-main);
+  cursor: pointer;
+  user-select: none;
+}
+
 .gotIt,
 .explore {
   display: inline-flex;

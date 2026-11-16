@@ -20,16 +20,21 @@ function markSeen() {
 }
 
 /**
- * Open-once state for the MCP launch announcement.
- * `auto` opens it on the first visit; `forced` (the dev "Announcement" state) opens it every time and never records a dismissal.
+ * Open state for the MCP launch announcement.
+ * `auto` opens it on every visit until the "Don't show this again" box was ticked on a dismissal; `forced` (the dev
+ * "Announcement" state) opens it every time and never records anything.
  */
 export function useAnnouncement({ auto, forced }: { auto: boolean; forced: boolean }) {
   const [open, setOpen] = useState(() => forced || (auto && !wasSeen()))
 
-  const dismiss = useCallback(() => {
-    setOpen(false)
-    if (!forced) markSeen()
-  }, [forced])
+  /** Closes the dialog; the choice is only remembered when "Don't show this again" is ticked. */
+  const dismiss = useCallback(
+    (dontShowAgain: boolean) => {
+      setOpen(false)
+      if (!forced && dontShowAgain) markSeen()
+    },
+    [forced],
+  )
 
   return { open, dismiss }
 }
