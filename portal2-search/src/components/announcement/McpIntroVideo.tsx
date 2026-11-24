@@ -25,6 +25,11 @@ const CHART_SERIES = USAGE_ACTIVE.series.map((s) => (s.id === 'lite' ? { ...s, c
 interface McpIntroVideoProps {
   /** Change it to run the clip again from the start. */
   replayKey: number
+  /**
+   * The popup's reading size: the display-size type and the button are set smaller, so the clip sits at the scale of the
+   * portal's own UI. Off for the exported MP4 / GIF, which are watched at full size.
+   */
+  compact?: boolean
 }
 
 /**
@@ -41,7 +46,7 @@ interface McpIntroVideoProps {
  * from `data/mcp.ts` (or the dialog's own text), so it says what the page says.
  * Decorative and inert: the dialog's own text carries the message.
  */
-export function McpIntroVideo({ replayKey }: McpIntroVideoProps) {
+export function McpIntroVideo({ replayKey, compact = false }: McpIntroVideoProps) {
   const stageRef = useRef<HTMLDivElement>(null)
   const [scale, setScale] = useState(0.5)
 
@@ -58,7 +63,7 @@ export function McpIntroVideo({ replayKey }: McpIntroVideoProps) {
   return (
     <div
       ref={stageRef}
-      className={styles.stage}
+      className={compact ? `${styles.stage} ${styles.compact}` : styles.stage}
       style={{ '--k': scale, height: SCENE_H * scale } as CSSProperties}
       aria-hidden
       inert

@@ -548,6 +548,69 @@
   color: #fff;
 }
 
+/*
+ * ---------- Compact: the clip inside the announcement popup ----------
+ * In the popup the 1440px frame is shown at ~0.44, so the display type (64px headline, 128px figures) and the 90px-tall
+ * button landed far above the portal's own scale (20px page heading, 14px/36px buttons). Only those are set smaller
+ * here; the cards, terminal, fields and graph are already UI-sized. The exported MP4 / GIF do not use this class.
+ * Scenes A and E are centred flex columns, so their content re-centres by itself; C and D keep their absolute offsets.
+ */
+.compact .brand {
+  transform: scale(0.85);
+  transform-origin: 0 0;
+}
+
+.compact .headline {
+  font-size: 54px;
+}
+
+.compact .lede {
+  font-size: 28px;
+}
+
+.compact .eyebrow {
+  font-size: 22px;
+  letter-spacing: 3.5px;
+}
+
+.compact .heading {
+  font-size: 34px;
+}
+
+.compact .freeTitle {
+  font-size: 42px;
+}
+
+.compact .statValue {
+  font-size: 92px;
+}
+
+.compact .statLabel {
+  font-size: 30px;
+}
+
+.compact .caption {
+  font-size: 28px;
+}
+
+/* 76px tall in the frame: 34px on screen at 0.44, the portal's 36px button; 32px type is 14px. */
+.compact .cta {
+  gap: 14px;
+  padding: 22px 44px;
+  border-radius: 12px;
+  font-size: 32px;
+}
+
+.compact .cta img {
+  width: 30px;
+  height: 30px;
+}
+
+.compact .ripple,
+.compact .ctaPulse::after {
+  border-radius: 12px;
+}
+
 /* ---------- Motion ---------- */
 @media (prefers-reduced-motion: no-preference) {
   .sceneA {

@@ -3,7 +3,7 @@
   inset: 0;
   z-index: 60;
   display: grid;
-  /* minmax(0, …) keeps the 720px dialog from stretching its track past a narrow viewport. */
+  /* minmax(0, …) keeps the 640px dialog from stretching its track past a narrow viewport. */
   grid-template: minmax(0, 1fr) / minmax(0, 1fr);
   place-items: center;
   padding: 16px;
@@ -13,7 +13,7 @@
 
 .dialog {
   position: relative;
-  width: 720px;
+  width: 640px;
   max-width: 100%;
   max-height: 100%;
   overflow-y: auto;
@@ -47,6 +47,15 @@
   }
 }
 
+/*
+ * Scale of this dialog = the scale of the portal under it (the Search page and the MCP confirm dialog):
+ *   title    20/30 700 Roboto   (title/h5, as "Search for a business to verify")
+ *   body     14/22 400          (body/base/small; 22 for multi-line copy), key terms at 600 in the primary ink
+ *   action   14/20 600, 36px    (Button 2.0.0 sm, as the Search button and the confirm dialog's buttons)
+ *   icons    16px, 14px in the Replay pill; checkbox 20px (the system's md)
+ * Replay and × are 32px, smaller than the buttons, so the controls laid over the clip stay quiet.
+ */
+
 /* ---------- Hero (the clip, Replay pill bottom-left and × top-right over it) ---------- */
 .hero {
   position: relative;
@@ -56,12 +65,12 @@
 
 .close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 12px;
+  right: 12px;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: 32px;
+  height: 32px;
   padding: 0;
   border: 0;
   border-radius: var(--av-radius-full);
@@ -77,20 +86,20 @@
 
 .replay {
   position: absolute;
-  left: 16px;
-  bottom: 16px;
+  left: 12px;
+  bottom: 12px;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0 18px;
-  border: 2px solid var(--av-interactive-control);
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 14px 0 10px;
+  border: 0;
   border-radius: var(--av-radius-full);
   background: #fff;
   color: var(--av-content-primary);
   font: 600 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
-  /* Outer ring, as on the original's Replay pill. */
-  box-shadow: 0 0 0 3px rgba(0, 115, 95, 0.3), 0 2px 8px rgba(0, 0, 0, 0.18);
+  /* A thin brand ring, as on the original's Replay pill. */
+  box-shadow: 0 0 0 2px rgba(0, 115, 95, 0.4), 0 2px 8px rgba(0, 0, 0, 0.18);
   transition: background-color 0.15s;
 }
 
@@ -106,55 +115,71 @@
   outline-offset: 2px;
 }
 
-/* ---------- Copy + actions ---------- */
+/* ---------- Copy: title + lede are one group, the steps a second ---------- */
 .content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 28px 32px 32px;
+  gap: 6px;
+  padding: 24px 24px 20px;
 }
 
 .title {
-  font: 700 var(--av-mcp-h1-size) / var(--av-mcp-h1-lh) var(--av-font-title);
+  font: 700 var(--av-h5-size) / var(--av-h5-lh) var(--av-font-title);
   color: var(--av-content-primary);
   text-wrap: balance;
 }
 
 .body {
-  max-width: 62ch;
-  font: 400 var(--av-body-size) / var(--av-body-lh-relaxed) var(--av-font-body);
+  max-width: 70ch;
+  font: 400 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
   color: var(--av-content-main);
+  text-wrap: pretty;
 }
 
-.note {
+.body strong,
+.steps strong {
+  font-weight: 600;
+  color: var(--av-content-primary);
+}
+
+/* What to do and what you get, one line each so the eye can run down the icons. */
+.steps {
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  margin-top: 4px;
-  padding: 14px 16px;
+  flex-direction: column;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 12px 16px;
+  list-style: none;
   border-radius: var(--av-radius-lg);
   background: var(--av-bg-accent);
   font: 400 var(--av-mcp-text-size) / var(--av-mcp-text-lh) var(--av-font-body);
   color: var(--av-content-main);
 }
 
-.noteIcon {
+.steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* 16px icon on a 22px line: 3px down centres it on the first line of text. */
+.steps svg {
   flex: none;
-  margin-top: 1px;
+  margin-top: 3px;
   color: var(--av-interactive-primary);
 }
 
-.note strong {
-  font-weight: 600;
-  color: var(--av-content-primary);
-}
-
+/* ---------- Actions: a footer of their own, kept in view when the dialog scrolls on a short window ---------- */
 .actions {
+  position: sticky;
+  bottom: 0;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
-  margin-top: 8px;
+  padding: 12px 24px 16px;
+  border-top: 1px solid var(--av-border-subtle);
+  background: #fff;
 }
 
 /* "Don't show this again": pinned to the left of the action row, the two buttons stay right-aligned. */
@@ -178,11 +203,11 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: var(--av-button-lg-h);
-  padding: 8px 24px;
+  height: var(--av-button-sm-h);
+  padding: 0 16px;
   border: 0;
-  border-radius: var(--av-radius-md);
-  font: 600 var(--av-body-size) / var(--av-body-lh) var(--av-font-body);
+  border-radius: var(--av-radius-sm);
+  font: 600 var(--av-small-size) / var(--av-small-lh) var(--av-font-body);
 }
 
 /* Ghost / Brand, as in the design system's Button "link" variant: transparent, brand text, tinted on hover. */
@@ -206,11 +231,28 @@
 
 @media (max-width: 559px) {
   .content {
-    padding: 20px 20px 24px;
+    padding: 20px 16px 16px;
   }
 
+  .steps {
+    padding: 12px;
+  }
+
+  /* Stacked buttons are too tall to pin; let them scroll with the copy. Touch targets get the usual 44px. */
   .actions {
+    position: static;
     flex-direction: column-reverse;
     align-items: stretch;
+    padding: 12px 16px 16px;
+  }
+
+  .gotIt,
+  .explore {
+    height: auto;
+    min-height: 44px;
+  }
+
+  .dontShow {
+    margin-right: 0;
   }
 }
