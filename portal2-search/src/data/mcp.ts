@@ -8,7 +8,7 @@ export const MCP_BETA = { searches: 200, reports: 20, markets: 14 }
 /** Copy of the pre-activation hero. Shared by the live page (McpIntro) and the announcement's preview video, so they cannot drift. */
 export const MCP_INTRO = {
   heading: 'Give your Al agent access to Asian KYB data',
-  body: 'The MCP is our new interface for Al agents. Connect Claude, Cursor, or any MCP-compatible client and let your agent call our Search + Lite tools directly. Activating generates a dedicated MCP key — one key per account, refreshable at any time.',
+  body: 'The MCP is our new interface for Al agents. Connect Claude & ChatGPT and let your agent call our Search + Lite tools directly. Activating generates a dedicated MCP key — one key per account, refreshable at any time.',
   cta: 'Activate MCP - Free Beta Access',
   toastLead: 'What happens next: ',
   toastText:

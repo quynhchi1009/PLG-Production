@@ -81,7 +81,7 @@ export function McpIntroVideo({ replayKey }: McpIntroVideoProps) {
             Give your AI agent access to Asian KYB data
           </h2>
           <p className={styles.lede} data-a="lede">
-            Connect Claude, Cursor, or any MCP-compatible client.
+            Connect Claude &amp; ChatGPT.
           </p>
         </section>
 
@@ -94,7 +94,7 @@ export function McpIntroVideo({ replayKey }: McpIntroVideoProps) {
               </span>
               <span>
                 <span className={styles.cardTitle}>Your AI agent</span>
-                <span className={styles.cardSub}>Claude · Cursor</span>
+                <span className={styles.cardSub}>Claude &amp; ChatGPT</span>
               </span>
             </div>
 

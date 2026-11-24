@@ -78,8 +78,8 @@ export function McpAnnouncement({ onDismiss, onExplore }: McpAnnouncementProps) 
             MCP is Now Live!
           </h2>
           <p id={bodyId} className={styles.body}>
-            Connect AsiaVerify to your AI agent. Link Claude, Cursor, or any MCP-compatible client and let it call our
-            Search and Lite Report tools directly, on the same registry data you use here.
+            Connect AsiaVerify to your AI agent. Link Claude &amp; ChatGPT and let them call our Search and Lite Report
+            tools directly, on the same registry data you use here.
           </p>
 
           <div className={styles.note} role="note">
