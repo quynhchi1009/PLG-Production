@@ -19,6 +19,7 @@ interface ReportViewPanelProps {
   onSelectDoc: (kind: ReportDocKind) => void
   onGoTo: (index: number) => void
   onRecommend: (id: string) => void
+  onDownload: () => void
 }
 
 const UNAVAILABLE: Partial<Record<OrderStatus, { title: string; text: string }>> = {
@@ -61,7 +62,7 @@ export function ReportViewPanel(props: ReportViewPanelProps) {
     <div className={styles.panel}>
       <DocTabs docs={viewer.docs} active={doc.kind} onSelect={props.onSelectDoc} />
       <Card className={styles.viewer}>
-        <ViewerToolbar pageIndex={props.pageIndex} total={props.total} onGoTo={props.onGoTo} />
+        <ViewerToolbar pageIndex={props.pageIndex} total={props.total} onGoTo={props.onGoTo} onDownload={props.onDownload} />
         <div className={styles.body}>
           <JumpNav
             doc={doc}

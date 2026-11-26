@@ -4,6 +4,7 @@ import { ReportViewPanel } from '../components/reportview/ReportViewPanel'
 import { JURISDICTIONS } from '../data/jurisdictions'
 import { useReportViewer, type ReportViewerSeed } from '../hooks/useReportViewer'
 import { viewerOrder } from '../data/reportView'
+import { requestDownload } from '../data/downloads'
 import type { ReportDocKind } from '../types/reportView'
 import styles from './ReportViewPage.module.css'
 
@@ -63,6 +64,11 @@ export function ReportViewPage({ params }: ReportViewPageProps) {
               onSelectDoc={v.selectDoc}
               onGoTo={v.goTo}
               onRecommend={v.toggleRecommendation}
+              onDownload={() => {
+                // Skip the manual trip to the sidebar: go straight to the Download Centre, which confirms the request.
+                const id = requestDownload(orderId)
+                window.location.hash = id ? `#/downloads?requested=${encodeURIComponent(id)}` : '#/downloads'
+              }}
             />
           </>
         ) : (

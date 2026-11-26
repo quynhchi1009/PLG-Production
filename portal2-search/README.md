@@ -21,6 +21,7 @@ the Figma file *Portal-2-PLG* (pages **Search screens**, **Order screens**, **Vi
 | `#/search/order?state=…` | `kyb-lite`, `kyb-compare`, `kyb-addons`, `kyb-complete`, `ubo` |
 | `#/report?state=…` | `results`, `filter-open`, `filtered`, `selected`, `loading`, `no-matches`, `no-orders` |
 | `#/report/view?order=<id>&doc=<kind>&page=<n>` or `?state=…` | `advance`, `advance-table`, `complete`, `lite`, `basic`, `basic-plus`, `ubo`, `legal`, `aml`, `monitoring`, `processing`, `unavailable` |
+| `#/downloads?state=…` | `results`, `requested` (top-right “being downloaded” notification + new Processing row) |
 | `#/mcp?state=…` | `preactivation`, `activate-dialog` (trial chrome), `post-activation`, `refresh-dialog`, `limit-reached`, `paying` |
 
 Without `state` the screens are fully interactive: the search validates (3+ characters, jurisdiction
@@ -47,7 +48,19 @@ Opens one order. Each product is a different report with its own section outline
 
 An order with several products shows one tab per report ("View Report(s)"). Processing orders show a
 "being prepared" message; unfulfilled, cancelled and not-found orders show why there is no report.
-Share, Download, Download (documents) and the Share recommendation choice are not wired to a backend.
+Share, Download (documents) and the Share recommendation choice are not wired to a backend.
+
+### Download flow (`#/report/view` → `#/downloads`)
+
+**Download** in the viewer toolbar records a mock download request and sends the user straight to the
+Download Centre (no trip through the sidebar). A top-right notification says “Your report is being downloaded,
+please refresh the page after a few minutes.”; it does not block the page, pauses on hover/focus and dismisses
+after 10 s, on its close button or with Escape. The new row is highlighted and shows **Processing**; on a reload
+after 1 minute (live: “a few minutes”) it shows **Completed**. Requests persist in `sessionStorage`.
+The Download Centre layout (heading, Status / Report Type / Jurisdiction filters with APPLY / CLEAR, table,
+pagination, expiry = request + 3 days) follows the live capture in Figma; the **Processing** label, the row
+highlight and the notification are new for this flow and not yet on live. How a Completed row is downloaded on
+live is not captured, so rows have no action yet.
 
 ## Structure (components by section)
 

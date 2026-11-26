@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { StateSwitcher } from './components/layout/StateSwitcher'
 import { AnnouncementVideoPage } from './pages/AnnouncementVideoPage'
+import { DOWNLOADS_STATES, DownloadsPage } from './pages/DownloadsPage'
 import { MCP_STATES, McpPage } from './pages/McpPage'
 import { ORDER_STATES, OrderPage } from './pages/OrderPage'
 import { REPORTS_STATES, ReportsPage } from './pages/ReportsPage'
@@ -12,7 +13,7 @@ interface Route {
   params: URLSearchParams
 }
 
-/** Tiny hash router: `#/search`, `#/search/order?name=...`, `#/report` and `#/report/view?order=...` (no router dependency needed yet). */
+/** Tiny hash router: `#/search`, `#/search/order?name=...`, `#/report`, `#/report/view?order=...` and `#/downloads` (no router dependency needed yet). */
 function parseHash(): Route {
   const raw = window.location.hash.replace(/^#/, '') || '/search'
   const [path, query = ''] = raw.split('?')
@@ -33,6 +34,7 @@ export default function App() {
   const isReports = route.path === '/report'
   const isReportView = route.path === '/report/view'
   const isMcp = route.path === '/mcp'
+  const isDownloads = route.path === '/downloads'
   const isVideo = import.meta.env.DEV && route.path === '/announcement-video'
   // Re-key on the full hash so switching states remounts the page with its new seed.
   const pageKey = window.location.hash
@@ -43,6 +45,8 @@ export default function App() {
     <>
       {isMcp ? (
         <McpPage key={pageKey} stateKey={stateKey ?? undefined} />
+      ) : isDownloads ? (
+        <DownloadsPage key={pageKey} params={route.params} />
       ) : isOrder ? (
         <OrderPage key={pageKey} params={route.params} />
       ) : isReportView ? (
@@ -57,6 +61,8 @@ export default function App() {
           base={
             isMcp
               ? '#/mcp'
+              : isDownloads
+              ? '#/downloads'
               : isOrder
               ? `#/search/order?${stripState(route.params)}`
               : isReportView
@@ -66,7 +72,7 @@ export default function App() {
                   : '#/search'
           }
           states={
-            isMcp ? MCP_STATES : isOrder ? ORDER_STATES : isReportView ? REPORT_VIEW_STATES : isReports ? REPORTS_STATES : SEARCH_STATES
+            isMcp ? MCP_STATES : isDownloads ? DOWNLOADS_STATES : isOrder ? ORDER_STATES : isReportView ? REPORT_VIEW_STATES : isReports ? REPORTS_STATES : SEARCH_STATES
           }
           current={stateKey}
         />

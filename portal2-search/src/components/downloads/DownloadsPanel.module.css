@@ -1,0 +1,234 @@
+/* Measured from the live Download Centre capture (card 1056 wide at 1440, 24px padding). */
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--av-card-pad);
+  max-width: 1672px;
+}
+
+/* title/h5 */
+.title {
+  font: 700 var(--av-h5-size) / 25px var(--av-font-title);
+  color: var(--av-content-primary);
+}
+
+.subtitle {
+  margin-top: 16px;
+  font-size: var(--av-small-size);
+  line-height: 19px;
+  color: var(--av-content-primary);
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.filterLabel {
+  font-size: var(--av-small-size);
+  line-height: 19px;
+  color: var(--av-content-main);
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* Live APPLY / CLEAR: 28px tall, brand outline, uppercase */
+.textButton {
+  height: 28px;
+  padding: 0 7px;
+  border: 1px solid var(--av-interactive-primary);
+  border-radius: var(--av-radius-sm);
+  background: transparent;
+  color: var(--av-interactive-primary);
+  font: 600 var(--av-small-size) / 18px var(--av-font-body);
+  text-transform: uppercase;
+}
+
+.textButton:hover {
+  background: var(--av-interactive-selected);
+}
+
+.textButton:focus-visible {
+  outline: 2px solid var(--av-interactive-control);
+  outline-offset: 2px;
+}
+
+.tableWrap {
+  margin-top: 16px;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 880px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: var(--av-small-size);
+  line-height: 19px;
+  color: var(--av-content-primary);
+}
+
+.table th {
+  height: 46px;
+  padding: 0 24px;
+  background: #e8e8e8;
+  font-weight: 600;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.colDate {
+  width: 224px;
+}
+.colStatus {
+  width: 200px;
+}
+.colExpiry {
+  width: 188px;
+}
+
+.table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--av-border-subtle);
+  vertical-align: middle;
+}
+
+.highlight td {
+  background: var(--av-interactive-selected);
+}
+
+.date {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+.business {
+  font-weight: 600;
+}
+
+.orderNo {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 15px;
+  color: var(--av-content-tertiary);
+}
+
+.pill {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 4px 12px;
+  border-radius: var(--av-radius-full);
+  background: #e8e8e8;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 15px;
+  color: var(--av-content-main);
+}
+
+.processing {
+  color: var(--av-content-tertiary);
+}
+
+.empty {
+  padding: 40px 24px;
+  text-align: center;
+  color: var(--av-content-main);
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 16px;
+  font-size: var(--av-small-size);
+  line-height: 18px;
+  color: var(--av-content-main);
+}
+
+.pageSize {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.pageSize select {
+  width: 107px;
+  height: 36px;
+  padding: 0 28px 0 12px;
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-sm);
+  background: var(--av-bg-elevated);
+  color: var(--av-content-primary);
+  font: inherit;
+  appearance: none;
+}
+
+.pageSize svg {
+  position: absolute;
+  right: 12px;
+  pointer-events: none;
+}
+
+.pageArrow,
+.pageNum {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--av-radius-sm);
+  background: var(--av-bg-subtle);
+  color: var(--av-content-primary);
+  font: 600 var(--av-small-size) / 18px var(--av-font-body);
+}
+
+.pageArrow:disabled {
+  color: var(--av-border-neutral);
+  cursor: not-allowed;
+}
+
+.pageActive {
+  background: var(--av-interactive-primary);
+  color: var(--av-base-contrast);
+}
+
+.goTo {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.goTo input {
+  width: 56px;
+  height: 32px;
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-sm);
+  background: var(--av-bg-elevated);
+  font: inherit;
+  text-align: center;
+}
+
+.pageArrow:focus-visible,
+.pageNum:focus-visible,
+.pageSize select:focus-visible,
+.goTo input:focus-visible {
+  outline: 2px solid var(--av-interactive-control);
+  outline-offset: 2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

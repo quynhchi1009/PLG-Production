@@ -1,0 +1,70 @@
+.root {
+  position: relative;
+}
+
+/* Live "Filter Button": 125 x 38, dark fill, light 13px label, chevron right */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-width: 125px;
+  height: 38px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: var(--av-radius-sm);
+  background: var(--av-content-main);
+  color: var(--av-base-contrast);
+  font: 600 13px / 18px var(--av-font-body);
+}
+
+.button:hover,
+.button[aria-expanded='true'] {
+  background: var(--av-bg-demoted);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--av-interactive-control);
+  outline-offset: 2px;
+}
+
+.label {
+  white-space: nowrap;
+}
+
+.count {
+  font-weight: 400;
+}
+
+.caretUp {
+  transform: rotate(180deg);
+}
+
+.popover {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 4px);
+  left: 0;
+  min-width: 100%;
+  width: max-content;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: var(--av-bg-elevated);
+  border: 1px solid var(--av-border-subtle);
+  border-radius: var(--av-radius-lg);
+  box-shadow: var(--av-shadow-popover);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: var(--av-option-h);
+  padding: 0 16px;
+  font-size: var(--av-small-size);
+  line-height: var(--av-small-lh);
+  color: var(--av-content-primary);
+}

@@ -7,6 +7,8 @@ interface ViewerToolbarProps {
   pageIndex: number
   total: number
   onGoTo: (index: number) => void
+  /** Requests the report file; the page then sends the user to the Download Centre */
+  onDownload: () => void
 }
 
 function IconButton({ label, disabled, onClick, children }: { label: string; disabled?: boolean; onClick?: () => void; children: ReactNode }) {
@@ -18,7 +20,7 @@ function IconButton({ label, disabled, onClick, children }: { label: string; dis
 }
 
 /** Page indicator and paging for the open report, then share and download for the whole report. */
-export function ViewerToolbar({ pageIndex, total, onGoTo }: ViewerToolbarProps) {
+export function ViewerToolbar({ pageIndex, total, onGoTo, onDownload }: ViewerToolbarProps) {
   const first = pageIndex <= 0
   const last = pageIndex >= total - 1
   return (
@@ -45,7 +47,7 @@ export function ViewerToolbar({ pageIndex, total, onGoTo }: ViewerToolbarProps) 
         <IconButton label="Share report">
           <Share2 size={22} />
         </IconButton>
-        <IconButton label="Download report">
+        <IconButton label="Download report" onClick={onDownload}>
           <Download size={22} />
         </IconButton>
       </div>
